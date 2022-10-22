@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotNetPracticeExamples.Models
 {
-	public class Song
+	public class SongWithImage
 	{
 		public int Id { get; set; }
 
@@ -16,5 +16,12 @@ namespace DotNetPracticeExamples.Models
 
 		[Required(ErrorMessage = "Input Error: The 'Duration' field cannot be empty.")]
 		public string Duration { get; set; }
+
+		//'IFormFile' is not a database table type
+		//-'NotMapped' decoration excludes mapping of the below to the table
+		[NotMapped]
+		public IFormFile Image { get; set; }
+
+		public string ImageUrl { get; set; }
 	}
 }

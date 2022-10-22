@@ -14,12 +14,14 @@ namespace DotNetPracticeExamples.Data
 		//'DbSet' (.NET extension of 'EntityFrameworkCore' class) -- Maps / creates database tables
 		//- Property will be mapped to table of 'Songs' with columns from 'Song' model
 		public DbSet<Song> Songs { get; set; }
+		public DbSet<SongWithImage> SongsWithImage { get; set; }
 
+		//Add entries to database upon 'database-update'
+		/*
 		//Override method of 'DbContext' class '.OnModelCreating()' to add database entries upon database creation
 		//- 'ModelBuilder' (.NET extension of 'EntityFrameworkCore' class) -- Used to construct the shape and relationships of a model for a context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			
 			modelBuilder.Entity<Song>().HasData(
 				new Song
 				{ 
@@ -34,7 +36,7 @@ namespace DotNetPracticeExamples.Data
 					Id = 2,
 					Title = "Default Song 2",
 					Language = "Default Language 2",
-					Duration = "1:23"
+					Duration = "2:34"
 				},
 
 				new Song
@@ -42,9 +44,10 @@ namespace DotNetPracticeExamples.Data
 					Id = 3,
 					Title = "Default Song 3",
 					Language = "Default Language 3",
-					Duration = "1:23"
+					Duration = "3:45"
 				}
 			);
 		}
+		*/
 	}
 }
