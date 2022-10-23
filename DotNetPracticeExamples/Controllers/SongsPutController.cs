@@ -70,7 +70,7 @@ namespace DotNetPracticeExamples.Controllers
 			}
 		}
 
-		/// /////////// IEnumerable ///////////
+		/// /////////// 'IEnumerable' Return ///////////
 		[HttpPut("PutIEnumerable/{id}")]
 		public IEnumerable PutIEnumerable(int id, [FromForm] Song songFromClient)
 		{
@@ -92,7 +92,7 @@ namespace DotNetPracticeExamples.Controllers
 			}
 		}
 
-		/// /////////// IActionresult ///////////
+		/// /////////// 'IActionresult' Return ///////////
 		[HttpPut("PutIActionresult/{id}")]
 		public IActionResult PutIActionresult(int id, [FromForm] Song songFromClient)
 		{
@@ -111,6 +111,51 @@ namespace DotNetPracticeExamples.Controllers
 			else
 			{
 				return StatusCode(404, $"Song Id: {id} not found.");
+			}
+		}
+
+		/// /////////// 'IEnumerable' Return of 'Task' with 'await' ///////////
+		[HttpPost("PutIEnumerableAsyncTask/{id}")]
+		public async Task<IEnumerable> PutIEnumerableAsyncTask(int id, [FromForm] Song songFromClient)
+		{
+			var song = await Task.FromResult( _dbContext.Songs.Find(id) );
+
+			if(song != null)
+			{
+				await Task.FromResult( song.Title = songFromClient.Title );
+				await Task.FromResult( song.Language = songFromClient.Language );
+				await Task.FromResult( song.Duration = songFromClient.Duration );
+
+				await Task.FromResult( _dbContext.SaveChanges() );
+
+				//Return status 200 to client
+				return await Task.FromResult(new List<StatusCodeResult>() { StatusCode(200) });
+			}
+			else
+			{
+				return await Task.FromResult(new List<StatusCodeResult>() { StatusCode(404) });
+			}
+		}
+
+		/// /////////// 'IActionResult' Return of 'Task' with 'await' ///////////
+		[HttpPut("PutIActionResultAsyncTask/{id}")]
+		public async Task<IActionResult> PutIActionResultAsyncTask(int id, [FromForm] Song songFromClient)
+		{
+			var song = await Task.FromResult( _dbContext.Songs.Find(id) );
+
+			if(song != null)
+			{
+				await Task.FromResult( song.Title = songFromClient.Title );
+				await Task.FromResult(song.Language = songFromClient.Language );
+				await Task.FromResult(song.Duration = songFromClient.Duration );
+
+				await Task.FromResult( _dbContext.SaveChanges() );
+
+				return await Task.FromResult( StatusCode(200, $"Song Id: {id} update successful.") );
+			}
+			else
+			{
+				return await Task.FromResult( StatusCode(404, $"Song Id: {id} not found.") );
 			}
 		}
 	}
