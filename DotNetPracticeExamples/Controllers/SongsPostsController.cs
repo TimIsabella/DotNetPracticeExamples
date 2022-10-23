@@ -9,11 +9,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace DotNetPracticeExamples.Controllers
 {
-	//URL 'Route' -- https://localhost:1234/api/controllername
+	//URL 'Route' -- https://localhost:1234/api/SongsPosts
 	//- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
 	//[Route("api/[controller]")]
 	[Route("api/SongsPosts")]

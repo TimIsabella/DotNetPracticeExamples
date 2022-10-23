@@ -63,7 +63,7 @@ namespace DotNetPracticeExamples.Controllers
 		/*
 		--Other status codes--
 		 return BadRequest();
-		 return NotFOund();
+		 return NotFound();
 		 return StatusCode(123);
 		 return StatusCode(StatusCodes.Status200OK);
 		 return StatusCode(StatusCodes.Status404NotFound);

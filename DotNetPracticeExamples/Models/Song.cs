@@ -6,7 +6,7 @@ namespace DotNetPracticeExamples.Models
 {
 	public class Song
 	{
-		public int Id { get; set; }
+		public int? Id { get; set; } //Adding '?' makes it readonly and not required for input
 
 		[Required(ErrorMessage = "Input Error: The 'Title' field cannot be empty.")]
 		public string Title { get; set; }

@@ -6,7 +6,7 @@ namespace DotNetPracticeExamples.Models.Requests
 {
 	public class SongAddRequest
 	{
-		public int Id { get; set; }
+		public int? Id { get; set; }
 
 		[Required(ErrorMessage = "Input Error: The 'Title' field cannot be empty.")]
 		public string Title { get; set; }
