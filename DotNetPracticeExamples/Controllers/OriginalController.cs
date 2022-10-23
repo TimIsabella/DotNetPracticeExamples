@@ -15,13 +15,13 @@ namespace DotNetPracticeExamples.Controllers
 	//URL 'Route' -- https://localhost:1234/api/controllername
 	//- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
 	//[Route("api/[controller]")]
-	[Route("api/SongsOriginalController")]
+	[Route("api/OriginalController")]
 	[ApiController]
-	public class SongsOriginalController : ControllerBase
+	public class OriginalController : ControllerBase
 	{
 		private ApiDbContext _dbContext;
 
-		public SongsOriginalController(ApiDbContext dbContext)
+		public OriginalController(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
 		/// //////////////////////////////////////////// GET ////////////////////////////////////////////
