@@ -12,10 +12,10 @@ using DotNetPracticeExamples.Models.Requests;
 
 namespace DotNetPracticeExamples.Controllers
 {
-	//URL 'Route' -- https://localhost:1234/api/SongsPusts
+	//URL 'Route' -- https://localhost:1234/api/SongsPuts
 	//- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
 	//[Route("api/[controller]")]
-	[Route("api/SongsPusts")]
+	[Route("api/SongsPuts")]
 	[ApiController]
 	public class SongsPutsController : ControllerBase
 	{
