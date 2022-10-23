@@ -128,11 +128,11 @@ namespace DotNetPracticeExamples.Controllers
 				await Task.FromResult(_dbContext.Remove(song));
 				await Task.FromResult(_dbContext.SaveChanges());
 
-				return StatusCode(200, $"Song Id: {id} successfully deleted.");
+				return await Task.FromResult( StatusCode(200, $"Song Id: {id} successfully deleted.") );
 			}
 			else
 			{
-				return StatusCode(404, $"Song Id: {id} not found.");
+				return await Task.FromResult(StatusCode(404, $"Song Id: {id} not found."));
 			}
 		}
 	}
