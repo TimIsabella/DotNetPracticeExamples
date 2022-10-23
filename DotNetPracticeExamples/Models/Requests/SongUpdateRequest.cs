@@ -2,13 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DotNetPracticeExamples.Models
+namespace DotNetPracticeExamples.Models.Requests
 {
-	public class Song
+	public class SongUpdateRequest
 	{
+		[Required]
 		public int Id { get; set; }
 
-		[Required(ErrorMessage = "Input Error: The 'Title' field cannot be empty.")]
+		[Required]
 		public string Title { get; set; }
 
 		[Required(ErrorMessage = "Input Error: The 'Language' field cannot be empty.")]

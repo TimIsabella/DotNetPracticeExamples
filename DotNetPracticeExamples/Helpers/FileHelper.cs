@@ -13,7 +13,7 @@ namespace DotNetPracticeExamples.Helpers
 		public static async Task<string> UploadImage(IFormFile file)
 		{
 			//Connection string from Azure 'storage account' in 'access keys'
-			string connectionString = "DefaultEndpointsProtocol=https;AccountName=musicapistorage111;AccountKey=a/0FxEk+oayUGvdSUD8FIXdM9kizasTVIkXm3r5UiPf0XMaTA/VaMTeEpIYMGYXxF+eDFLb3IzXE+AStcLVlEg==;EndpointSuffix=core.windows.net";
+			string connectionString = "";
 
 			//Azure 'storage account' 'container' name
 			string containerName = "songart";

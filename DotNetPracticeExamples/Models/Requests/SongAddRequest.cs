@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DotNetPracticeExamples.Models
+namespace DotNetPracticeExamples.Models.Requests
 {
-	public class Song
+	public class SongAddRequest
 	{
 		public int Id { get; set; }
 
