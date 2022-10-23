@@ -27,6 +27,56 @@ namespace DotNetPracticeExamples.Controllers
 		/// ///////////////////////////////// DELETE EXAMPLES /////////////////////////////////
 
 		/// /////////// void Return ///////////
+		[HttpDelete("DeleteVoid/{id}")]
+		public void DeleteVoid(int id)
+		{
+			var song = _dbContext.Songs.Find(id);   //Find song record by id
 
+			//If record not null
+			if(song != null)
+			{
+				_dbContext.Songs.Remove(song);  //Remove song with '.Remove()'
+				_dbContext.SaveChanges();		//'.SaveChanges' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database
+			}
+
+			//No return
+		}
+
+		/// /////////// string Return ///////////
+		[HttpDelete("DeleteString/{id}")]
+		public string DeleteString(int id)
+		{
+			var song = _dbContext.Songs.Find(id);
+
+			if(song != null)
+			{
+				_dbContext.Remove(song);
+				_dbContext.SaveChanges();
+				return $"Song Id: {id} successfully deleted.";
+			}
+			else
+			{
+				return $"Song Id: {id} not found.";
+			}	
+		}
+
+		/// /////////// 'IEnumerable' Return ///////////
+		[HttpDelete("DeleteIEnumerable/{id}")]
+		public IEnumerable DeleteIEnumerable(int id)
+		{
+			var song = _dbContext.Songs.Find(id);
+
+			if(song != null)
+			{
+				_dbContext.Remove(song);
+				_dbContext.SaveChanges();
+
+				yield return StatusCode(204, $"Song Id: {id} successfully deleted.");
+			}
+			else
+			{
+				yield return StatusCode(404, $"Song Id: {id} not found.");
+			}
+		}
 	}
 }
