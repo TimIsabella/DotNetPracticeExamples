@@ -52,11 +52,11 @@ namespace DotNetPracticeExamples.Controllers
 			{
 				_dbContext.Remove(song);
 				_dbContext.SaveChanges();
-				return $"Song Id: {id} successfully deleted.";
+				return $"200 -- Song Id: {id} successfully deleted.";
 			}
 			else
 			{
-				return $"Song Id: {id} not found.";
+				return $"404 -- Song Id: {id} not found.";
 			}	
 		}
 
@@ -71,7 +71,7 @@ namespace DotNetPracticeExamples.Controllers
 				_dbContext.Remove(song);
 				_dbContext.SaveChanges();
 
-				yield return StatusCode(204, $"Song Id: {id} successfully deleted.");
+				yield return StatusCode(200, $"Song Id: {id} successfully deleted.");
 			}
 			else
 			{
