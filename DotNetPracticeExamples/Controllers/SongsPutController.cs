@@ -115,7 +115,7 @@ namespace DotNetPracticeExamples.Controllers
 		}
 
 		/// /////////// 'IEnumerable' Return of 'Task' with 'await' ///////////
-		[HttpPost("PutIEnumerableAsyncTask/{id}")]
+		[HttpPut("PutIEnumerableAsyncTask/{id}")]
 		public async Task<IEnumerable> PutIEnumerableAsyncTask(int id, [FromForm] Song songFromClient)
 		{
 			var song = await Task.FromResult( _dbContext.Songs.Find(id) );
