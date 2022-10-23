@@ -46,7 +46,7 @@ namespace DotNetPracticeExamples.Controllers
 		}
 
 		/// /////////// 'IEnumerable' Return ///////////
-		[HttpPost("PostIActionResult")]
+		[HttpPost("PostIEnumerable")]
 		public IEnumerable PostIEnumerable([FromBody] Song song) // 'IEnumerable' (.NET interface of 'Collections' class) -- Basic collection in .Net
 		{
 			_dbContext.Songs.Add(song);     //Add song by model schema
@@ -54,31 +54,33 @@ namespace DotNetPracticeExamples.Controllers
 			yield return StatusCode(201);   //'yeild' fulfills the need of an 'IEnumerable' collection return
 		}
 
-		///// /////////// 'IActionResult' Return ///////////
-		//[HttpPost("PostIActionResult")]
-		//public IActionResult PostIActionResult([FromBody] Song song) // 'IActionResult' (.NET interface of 'Mvc' class) -- Defines a contract that represents the result of an action method
-		//{
-		//	_dbContext.Songs.Add(song);		//Add song by model schema
-		//	_dbContext.SaveChanges();		//'.SaveChanges' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database
-		//	return StatusCode(201);			//Return status 201 to client
-		//}
+		/// /////////// 'IActionResult' Return ///////////
+		[HttpPost("PostIActionResult")]
+		public IActionResult PostIActionResult([FromBody] Song song) // 'IActionResult' (.NET interface of 'Mvc' class) -- Defines a contract that represents the result of an action method
+		{
+			_dbContext.Songs.Add(song);		//Add song by model schema
+			_dbContext.SaveChanges();		//'.SaveChanges' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database
+			return StatusCode(201);			//Return status 201 to client
+		}
 
 		/// /////////// 'IEnumerable' Return of 'Task' with 'await' ///////////
 		[HttpPost("PostIEnumerableAsyncTask")]
 		public async Task<IEnumerable> PostIEnumerableAsyncTask([FromBody] Song song)
 		{
-			await _dbContext.Songs.AddAsync(song);                      //Add song by model schema asynchronusly
-			await _dbContext.SaveChangesAsync();                        //'.SaveChangesAsync' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database asynchronusly
-			return await Task.FromResult((IEnumerable)StatusCode(201)); //Return status 201 to client
+			await _dbContext.Songs.AddAsync(song);	//Add song by model schema asynchronusly
+			await _dbContext.SaveChangesAsync();	//'.SaveChangesAsync' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database asynchronusly
+
+			//Return status 201 to client
+			return await Task.FromResult(new List<StatusCodeResult>() { StatusCode(201) });
 		}
 
-		///// /////////// 'IActionResult' Return of 'Task' with 'await' ///////////
-		//[HttpPost("PostIActionResultAsyncTask")]
-		//public async Task<IActionResult> PostIActionResultAsyncTask([FromBody] Song song)
-		//{
-		//	await _dbContext.Songs.AddAsync(song);			//Add song by model schema asynchronusly
-		//	await _dbContext.SaveChangesAsync();			//'.SaveChangesAsync' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database asynchronusly
-		//	return await Task.FromResult(StatusCode(201));	//Return status 201 to client
-		//}
+		/// /////////// 'IActionResult' Return of 'Task' with 'await' ///////////
+		[HttpPost("PostIActionResultAsyncTask")]
+		public async Task<IActionResult> PostIActionResultAsyncTask([FromBody] Song song)
+		{
+			await _dbContext.Songs.AddAsync(song);          //Add song by model schema asynchronusly
+			await _dbContext.SaveChangesAsync();            //'.SaveChangesAsync' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database asynchronusly
+			return await Task.FromResult(StatusCode(201));  //Return status 201 to client
+		}
 	}
 }
