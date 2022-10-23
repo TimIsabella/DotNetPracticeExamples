@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections;
 using DotNetPracticeExamples.Models.Requests;
+using Newtonsoft.Json.Linq;
 
 namespace DotNetPracticeExamples.Controllers
 {
@@ -76,6 +77,62 @@ namespace DotNetPracticeExamples.Controllers
 			else
 			{
 				yield return StatusCode(404, $"Song Id: {id} not found.");
+			}
+		}
+
+		/// /////////// 'IActionResult' Return ///////////
+		[HttpDelete("DeleteIActionResult/{id}")]
+		public IActionResult DeleteIActionResult(int id)
+		{
+			var song = _dbContext.Songs.Find(id);
+
+			if(song != null)
+			{
+				_dbContext.Remove(song);
+				_dbContext.SaveChanges();
+				return StatusCode(200, $"Song Id: {id} successfully deleted.");
+			}
+			else
+			{
+				return StatusCode(404, $"Song Id: {id} not found.");
+			}
+		}
+
+		/// /////////// 'IEnumerable' Return of 'Task' with 'await' ///////////
+		[HttpDelete("DeleteIEnumerableAsyncTask/{id}")]
+		public async Task<IEnumerable> DeleteIEnumerableAsyncTask(int id)
+		{
+			var song = await Task.FromResult( _dbContext.Songs.Find(id) );
+
+			if(song != null)
+			{
+				await Task.FromResult(_dbContext.Remove(song));
+				await Task.FromResult(_dbContext.SaveChanges());
+
+				return await Task.FromResult(new List<StatusCodeResult>() { StatusCode(200) });
+			}
+			else
+			{
+				return await Task.FromResult( new List<StatusCodeResult>() { StatusCode(200) });
+			}
+		}
+
+		/// /////////// 'IActionResult' Return of 'Task' with 'await' ///////////
+		[HttpDelete("DeleteIActionResultAsyncTask/{id}")]
+		public async Task<IActionResult> DeleteIActionResultAsyncTask(int id)
+		{
+			var song = await Task.FromResult(_dbContext.Songs.Find(id));
+
+			if(song != null)
+			{
+				await Task.FromResult(_dbContext.Remove(song));
+				await Task.FromResult(_dbContext.SaveChanges());
+
+				return StatusCode(200, $"Song Id: {id} successfully deleted.");
+			}
+			else
+			{
+				return StatusCode(404, $"Song Id: {id} not found.");
 			}
 		}
 	}
