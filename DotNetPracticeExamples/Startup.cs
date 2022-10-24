@@ -1,22 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using DotNetPracticeExamples.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
 
 namespace DotNetPracticeExamples
 {
+	/// ///////////////////////////////// Startup: configures the entity framework /////////////////////////////////
+
 	public class Startup
 	{
 		public IConfiguration Configuration { get; }
@@ -44,9 +38,6 @@ namespace DotNetPracticeExamples
 			//- 'ApiDbContext' is registered as a service
 			//- '.UseSqlServer' (.NET extension of 'SqlServerDbContextOptionsExtensions' class) -- Configures the context to connect to a Microsoft SQL Server database
 			services.AddDbContext<ApiDbContext>(option => option.UseSqlServer(@"Data Source=GUNNANMON\SQLEXPRESS; Initial Catalog=DotNetPracticeExamples; Integrated Security=True; Connect Timeout=30; Encrypt=False; TrustServerCertificate=False; ApplicationIntent=ReadWrite; MultiSubnetFailover=False;"));
-
-			//Example
-			//services.AddDbContext<ApiDbContext>(option => option.UseSqlServer(@"Data Source=(localdb)\ProjectModels; Initial Catalog=DotNetPracticeExamplesEF;"));
 		}
 
 		/// /////////// This method gets called by the runtime. Use this method to configure the HTTP request pipeline ///////////
