@@ -33,9 +33,13 @@ namespace DotNetPracticeExamples.Controllers
 			if(song != null)
 			{
 				//'dbContext' of song modified with values from 
+				song.Artist = songFromClient.Artist;
 				song.Title = songFromClient.Title;
-				song.Language = songFromClient.Language;
+				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
+				song.Rating = songFromClient.Rating;
+				song.StatusId = songFromClient.StatusId;
+				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();   //'.SaveChanges' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database
 			}
@@ -51,9 +55,13 @@ namespace DotNetPracticeExamples.Controllers
 
 			if(song != null)
 			{
+				song.Artist = songFromClient.Artist;
 				song.Title = songFromClient.Title;
-				song.Language = songFromClient.Language;
+				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
+				song.Rating = songFromClient.Rating;
+				song.StatusId = songFromClient.StatusId;
+				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();
 
@@ -73,9 +81,13 @@ namespace DotNetPracticeExamples.Controllers
 
 			if(song != null)
 			{
+				song.Artist = songFromClient.Artist;
 				song.Title = songFromClient.Title;
-				song.Language = songFromClient.Language;
+				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
+				song.Rating = songFromClient.Rating;
+				song.StatusId = songFromClient.StatusId;
+				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();
 
@@ -95,9 +107,13 @@ namespace DotNetPracticeExamples.Controllers
 
 			if(song != null)
 			{
+				song.Artist = songFromClient.Artist;
 				song.Title = songFromClient.Title;
-				song.Language = songFromClient.Language;
+				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
+				song.Rating = songFromClient.Rating;
+				song.StatusId = songFromClient.StatusId;
+				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();
 
@@ -117,9 +133,13 @@ namespace DotNetPracticeExamples.Controllers
 
 			if(song != null)
 			{
+				await Task.FromResult( song.Artist = songFromClient.Artist);
 				await Task.FromResult( song.Title = songFromClient.Title );
-				await Task.FromResult( song.Language = songFromClient.Language );
+				await Task.FromResult( song.Genre = songFromClient.Genre );
 				await Task.FromResult( song.Duration = songFromClient.Duration );
+				await Task.FromResult( song.Rating = songFromClient.Rating );
+				await Task.FromResult( song.StatusId = songFromClient.StatusId );
+				await Task.FromResult( song.ForSale = songFromClient.ForSale );
 
 				await Task.FromResult( _dbContext.SaveChanges() );
 
@@ -140,9 +160,13 @@ namespace DotNetPracticeExamples.Controllers
 
 			if(song != null)
 			{
-				await Task.FromResult( song.Title = songFromClient.Title );
-				await Task.FromResult(song.Language = songFromClient.Language );
-				await Task.FromResult(song.Duration = songFromClient.Duration );
+				await Task.FromResult(song.Artist = songFromClient.Artist);
+				await Task.FromResult(song.Title = songFromClient.Title);
+				await Task.FromResult(song.Genre = songFromClient.Genre);
+				await Task.FromResult(song.Duration = songFromClient.Duration);
+				await Task.FromResult(song.Rating = songFromClient.Rating);
+				await Task.FromResult(song.StatusId = songFromClient.StatusId);
+				await Task.FromResult(song.ForSale = songFromClient.ForSale);
 
 				await Task.FromResult( _dbContext.SaveChanges() );
 
