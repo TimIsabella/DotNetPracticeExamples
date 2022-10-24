@@ -1,15 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DotNetPracticeExamples.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using DotNetPracticeExamples.Data;
-using DotNetPracticeExamples.Helpers;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using System.Collections;
-using DotNetPracticeExamples.Models.Requests;
-using Newtonsoft.Json.Linq;
 
 namespace DotNetPracticeExamples.Controllers
 {
