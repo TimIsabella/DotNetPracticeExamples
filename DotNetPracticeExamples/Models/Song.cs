@@ -15,7 +15,7 @@ namespace DotNetPracticeExamples.Models
 		[Required(ErrorMessage = "Input Error: The 'Title' field cannot be empty.")]
 		public string Title { get; set; }
 
-		[Required(ErrorMessage = "Input Error: The 'Language' field cannot be empty.")]
+		[Required(ErrorMessage = "Input Error: The 'Genre' field cannot be empty.")]
 		public string Genre { get; set; }
 
 		[Required(ErrorMessage = "Input Error: The 'Duration' field cannot be empty.")]
