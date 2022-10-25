@@ -16,16 +16,12 @@ namespace DotNetPracticeExamples.Models
 		[Required(ErrorMessage = "Input Error: The 'Genre' field cannot be empty.")]
 		public string Genre { get; set; }
 
-		[AllowNull]
-		public string CoverArtUrl { get; set; }
+		public string? CoverArtUrl { get; set; }
 
-		[AllowNull]
-		public int Rating { get; set; }
+		public int? Rating { get; set; }
 
-		[AllowNull]
-		public int StatusId { get; set; }
+		public int? StatusId { get; set; }
 
-		[AllowNull]
-		public bool ForSale { get; set; }
+		public bool? ForSale { get; set; }
 	}
 }

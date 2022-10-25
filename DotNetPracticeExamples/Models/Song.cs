@@ -22,16 +22,12 @@ namespace DotNetPracticeExamples.Models
 		[Required(ErrorMessage = "Input Error: The 'Duration' field cannot be empty.")]
 		public TimeSpan Duration { get; set; }
 
-		[AllowNull]
 		public int? AlbumId { get; set; }
 
-		[AllowNull]
-		public int Rating { get; set; }
+		public int? Rating { get; set; }
 
-		[AllowNull]
-		public int StatusId { get; set; }
+		public int? StatusId { get; set; }
 
-		[AllowNull]
-		public bool ForSale { get; set; }
+		public bool? ForSale { get; set; }
 	}
 }
