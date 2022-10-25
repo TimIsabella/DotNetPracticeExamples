@@ -6,12 +6,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DotNetPracticeExamples.Models
 {
-	public class Song
+	public class Album
 	{
 		public int? Id { get; set; } //Adding '?' makes it readonly and not required for input
-
-		[Required(ErrorMessage = "Input Error: The 'Artist' field cannot be empty.")]
-		public string Artist { get; set; }
 
 		[Required(ErrorMessage = "Input Error: The 'Title' field cannot be empty.")]
 		public string Title { get; set; }
@@ -19,11 +16,8 @@ namespace DotNetPracticeExamples.Models
 		[Required(ErrorMessage = "Input Error: The 'Genre' field cannot be empty.")]
 		public string Genre { get; set; }
 
-		[Required(ErrorMessage = "Input Error: The 'Duration' field cannot be empty.")]
-		public TimeSpan Duration { get; set; }
-
 		[AllowNull]
-		public int? AlbumId { get; set; }
+		public string CoverArtUrl { get; set; }
 
 		[AllowNull]
 		public int Rating { get; set; }

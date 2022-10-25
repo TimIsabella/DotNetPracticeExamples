@@ -196,7 +196,7 @@ namespace DotNetPracticeExamples.Controllers
 			{ return NotFound($"Index: {index} not found"); }
 			else
 			{
-				_dbContext.SongsWithImage.Remove(song);          //Remove song with '.Remove' and passing in got gotten by index
+				_dbContext.SongsWithImage.Remove(song); //Remove song with '.Remove' and passing in got gotten by index
 				_dbContext.SaveChanges();               //'.SaveChanges' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database
 				return Ok("Record deleted!");           //Return status '200 OK' to client and delete message upon completion
 			}
