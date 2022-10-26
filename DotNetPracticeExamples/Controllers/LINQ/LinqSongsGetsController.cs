@@ -59,26 +59,26 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongsOfAlbum")]
 		public IActionResult GetAllSongsOfAlbum()
 		{
-			IQueryable result = from album in _dbContext.Albums
-								orderby album.Title ascending
-								select new
-								{
-									Album = album.Title,
-									Genre = album.Genre,
+			var result = from album in _dbContext.Albums
+						 orderby album.Title ascending
+						 select new
+						 {
+							Album = album.Title,
+							Genre = album.Genre,
 									
-									//List of songs
-									Songs = (	 
-												 from song in _dbContext.Songs
-												 where song.AlbumId == album.Id
-												 orderby song.Artist ascending
-												 select new
-												 {
-													 Artist = song.Artist,
-													 Title = song.Title,
-													 Duration = song.Duration
-												 }
-											 ).ToList() //Returns multiple results and must be converted to a list
-								};
+							//List of songs
+							Songs = (	 
+										from song in _dbContext.Songs
+										where song.AlbumId == album.Id
+										orderby song.Artist ascending
+										select new
+										{
+											Artist = song.Artist,
+											Title = song.Title,
+											Duration = song.Duration
+										}
+									).ToList() //Returns multiple results and must be converted to a list
+						 };
 
 			return StatusCode(200, result);
 		}
