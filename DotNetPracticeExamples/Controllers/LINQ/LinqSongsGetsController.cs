@@ -28,11 +28,12 @@ namespace DotNetPracticeExamples.Controllers
 		{
 			var result = from song in _dbContext.Songs
 						 orderby song.Artist ascending
-						 select new { 
-										Artist = song.Artist, 
-										Title = song.Title, 
-										Duration = song.Duration
-									};
+						 select new
+						 {
+							 Artist = song.Artist,
+							 Title = song.Title,
+							 Duration = song.Duration
+						 };
 
 			if(result != null)
 			{ return StatusCode(200, result); }
@@ -48,12 +49,13 @@ namespace DotNetPracticeExamples.Controllers
 						 join album in _dbContext.Albums
 						 on song.AlbumId equals album.Id
 						 orderby album.Title ascending
-						 select new { 
-										Artist = song.Artist,
-										Title = song.Title, 
-										Album = album.Title,
-										Duration = song.Duration
-									};
+						 select new
+						 {
+							 Artist = song.Artist,
+							 Title = song.Title,
+							 Album = album.Title,
+							 Duration = song.Duration
+						 };
 
 			if(result != null)
 			{ return StatusCode(200, result); }
@@ -69,11 +71,11 @@ namespace DotNetPracticeExamples.Controllers
 						 orderby album.Title ascending
 						 select new
 						 {
-							Album = album.Title,
-							Genre = album.Genre,
-									
-							//List of songs
-							Songs = (	 
+							 Album = album.Title,
+							 Genre = album.Genre,
+
+							 //List of songs
+							 Songs = (
 										from song in _dbContext.Songs
 										where song.AlbumId == album.Id
 										orderby song.Artist ascending
@@ -91,5 +93,31 @@ namespace DotNetPracticeExamples.Controllers
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
+
+		/// /////////// Get All Songs by Rating ///////////
+		[HttpGet("GetSongsByRating/{rating}")]
+		public IActionResult GetSongsByRating(int rating)
+		{
+			var result = from song in _dbContext.Songs
+						 where song.Rating >= rating
+						 orderby song.Title ascending
+						 select song;
+
+			return StatusCode(200, result);
+		}
+
+		/// /////////// Get All Songs by Rating ///////////
+		[HttpGet("GetSongsByGenre/{genre}")]
+		public IActionResult GetSongsByGenre(string genre)
+		{
+			var result = from song in _dbContext.Songs
+						 where EF.Functions.Like(song.Genre, $"%{genre}%")
+						 orderby song.Title ascending
+						 select song;
+
+			return StatusCode(200, result);
+		}
+
+
 	}
 }
