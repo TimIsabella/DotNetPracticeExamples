@@ -22,36 +22,58 @@ namespace DotNetPracticeExamples.Controllers
 
 		/// ///////////////////////////////// GET ALL EXAMPLES WITH LINQ /////////////////////////////////
 
-		/// /////////// Get By Id and return 'IActionResult' ///////////
-		[HttpGet("GetByIdIActionResult/id={id}")]
-		public IActionResult GetByIdIActionResult(int id)
+		/// /////////// Get All Songs ///////////
+		[HttpGet("GetAllSongs")]
+		public IActionResult GetAllSongs()
 		{
-			var song = _dbContext.Songs.Where((element) => element.Id == id);
+			var result = from song in _dbContext.Songs
+						 select new { 
+										Artist = song.Artist, 
+										Name = song.Title, 
+										Duration = song.Duration
+									};
 
-			if(song == null)
-			{
-				return StatusCode(404, $"Id: {id} not found.");
-			}
-			else
-			{
-				return StatusCode(200, song);
-			}
+			return StatusCode(200, result);
+		}
+
+		/// /////////// Get All Songs Joined With Album ///////////
+		[HttpGet("GetAllSongsJoinedWithAlbum")]
+		public IActionResult GetAllSongsJoinedWithAlbum()
+		{
+			var result = from song in _dbContext.Songs
+						 join album in _dbContext.Albums
+						 on song.AlbumId equals album.Id
+						 select new { 
+										Name = song.Title, 
+										Album = album.Title 
+									};
+
+			return StatusCode(200, result);
 		}
 
 		/// /////////// Get By Id and return 'IActionResult' ///////////
-		//[HttpGet("GetByDurationIActionResult/durationGreaterThan={durationGreaterThan}")]
-		//public IActionResult GetByDurationIActionResult(string durationGreaterThan)
-		//{ 
-		//	var song = _dbContext.Songs.Where((element) => element.Duration > durationGreaterThan).
+		[HttpGet("GetAllSongsOfAlbum")]
+		public IActionResult GetAllSongsOfAlbum()
+		{
+			IQueryable result = from album in _dbContext.Albums
+								select new
+								{
+									Album = album.Title,
+									Genre = album.Genre,
+									
+									//List of songs
+									Songs = (	 
+												 from song in _dbContext.Songs
+												 where song.AlbumId == album.Id
+												 select new
+												 {
+													 SongName = song.Title,
+													 SongDuration = song.Duration
+												 }
+											 ).ToList() //Returns multiple results and must be converted to a list
+								};
 
-		//	if(song == null)
-		//	{
-		//		return StatusCode(404, $"No song with duration greather than {durationGreaterThan} found.");
-		//	}
-		//	else
-		//	{
-		//		return StatusCode(200, song);
-		//	}
-		//}
+			return StatusCode(200, result);
+		}
 	}
 }
