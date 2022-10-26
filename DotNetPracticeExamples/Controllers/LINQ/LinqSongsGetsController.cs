@@ -20,7 +20,7 @@ namespace DotNetPracticeExamples.Controllers
 		public LinqSongsGetsController(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		/// ///////////////////////////////// GET ALL EXAMPLES WITH LINQ /////////////////////////////////
+		/// ///////////////////////////////// GET EXAMPLES WITH LINQ /////////////////////////////////
 
 		/// /////////// Get All Songs ///////////
 		[HttpGet("GetAllSongs")]
