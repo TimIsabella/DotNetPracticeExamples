@@ -34,7 +34,10 @@ namespace DotNetPracticeExamples.Controllers
 										Duration = song.Duration
 									};
 
-			return StatusCode(200, result);
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
 		}
 
 		/// /////////// Get All Songs Joined With Album ///////////
@@ -52,7 +55,10 @@ namespace DotNetPracticeExamples.Controllers
 										Duration = song.Duration
 									};
 
-			return StatusCode(200, result);
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
 		}
 
 		/// /////////// Get All Albums And List Songs ///////////
@@ -80,7 +86,10 @@ namespace DotNetPracticeExamples.Controllers
 									).ToList() //Returns multiple results and must be converted to a list
 						 };
 
-			return StatusCode(200, result);
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
 		}
 	}
 }
