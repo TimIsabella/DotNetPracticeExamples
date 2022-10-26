@@ -55,7 +55,7 @@ namespace DotNetPracticeExamples.Controllers
 			return StatusCode(200, result);
 		}
 
-		/// /////////// Get By Id and return 'IActionResult' ///////////
+		/// /////////// Get All Albums And List Songs ///////////
 		[HttpGet("GetAllSongsOfAlbum")]
 		public IActionResult GetAllSongsOfAlbum()
 		{
