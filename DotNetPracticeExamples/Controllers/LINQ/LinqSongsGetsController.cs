@@ -103,7 +103,10 @@ namespace DotNetPracticeExamples.Controllers
 						 orderby song.Title ascending
 						 select song;
 
-			return StatusCode(200, result);
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
 		}
 
 		/// /////////// Get All Songs by Rating ///////////
@@ -111,11 +114,14 @@ namespace DotNetPracticeExamples.Controllers
 		public IActionResult GetSongsByGenre(string genre)
 		{
 			var result = from song in _dbContext.Songs
-						 where EF.Functions.Like(song.Genre, $"%{genre}%")
+						 where EF.Functions.Like(song.Genre, $"%{genre}%") //Directly 'LIKE' operator in SQL -- LINQ does not contain a LIKE operator
 						 orderby song.Title ascending
 						 select song;
 
-			return StatusCode(200, result);
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
 		}
 
 
