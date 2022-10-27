@@ -27,17 +27,26 @@ namespace DotNetPracticeExamples.Controllers
 		public IActionResult GetAllSongs()
 		{
 			///Query syntax
-			var result = from song in _dbContext.Songs
-						 orderby song.Artist ascending
-						 select new
-						 {
-							 Artist = song.Artist,
-							 Title = song.Title,
-							 Duration = song.Duration
-						 };
+			var queryResult = from song in _dbContext.Songs
+							  orderby song.Artist ascending
+							  select new
+							  {
+								  Artist = song.Artist,
+								  Title = song.Title,
+								  Duration = song.Duration
+							  };
 
-			if(result != null)
-			{ return StatusCode(200, result); }
+			var methodResult = _dbContext.Songs
+							   .OrderBy(song => song.Artist)
+							   .Select(song => new
+							   {
+								   Artist = song.Artist,
+								   Title = song.Title,
+								   Duration = song.Duration
+							   });
+
+			if(methodResult != null)
+			{ return StatusCode(200, methodResult); }
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
@@ -46,21 +55,36 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongsJoinedWithAlbum")]
 		public IActionResult GetAllSongsJoinedWithAlbum()
 		{
-			///Query syntax
-			var result = from song in _dbContext.Songs
-						 join album in _dbContext.Albums
-						 on song.AlbumId equals album.Id
-						 orderby album.Title ascending
-						 select new
-						 {
-							 Artist = song.Artist,
-							 Title = song.Title,
-							 Album = album.Title,
-							 Duration = song.Duration
-						 };
+			///Query Syntax
+			var queryResult = from song in _dbContext.Songs
+							  join album in _dbContext.Albums
+							  on song.AlbumId equals album.Id
+							  orderby album.Title ascending
+							  select new
+							  {
+								  Artist = song.Artist,
+								  Title = song.Title,
+								  Album = album.Title,
+								  Duration = song.Duration
+							  };
 
-			if(result != null)
-			{ return StatusCode(200, result); }
+			///Method Syntax
+			var methodResult = _dbContext.Songs
+							   .Join(_dbContext.Albums, 
+									 song => song.AlbumId, 
+									 album => album.Id, 
+									 (song, album) => new {Song = song, Album = album}
+								    )
+							   .Select(result => new 
+							   { 
+									Artist = result.Song.Artist,
+									Title = result.Song.Title,
+									Album = result.Album.Title,
+									Duration = result.Song.Duration
+							   });				
+
+			if(methodResult != null)
+			{ return StatusCode(200, methodResult); }
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
@@ -77,8 +101,8 @@ namespace DotNetPracticeExamples.Controllers
 
 			///Method Syntax
 			var methodResult = _dbContext.Songs
-							   .Where(s => s.Rating >= rating)
-							   .OrderBy(s => s.Title);
+							   .Where(song => song.Rating >= rating)
+							   .OrderBy(song => song.Title);
 
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
@@ -166,7 +190,7 @@ namespace DotNetPracticeExamples.Controllers
 												 Title = song.Title,
 												 Duration = song.Duration
 											 }
-										 ).ToList() //Returns multiple results and must be converted to a list
+										  ).ToList() //Returns multiple results and must be converted to a list
 							  };
 
 			///Method Syntax
@@ -194,5 +218,7 @@ namespace DotNetPracticeExamples.Controllers
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
+
+		/// /////////// Get All Albums And List Songs ///////////
 	}
 }
