@@ -26,6 +26,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongs")]
 		public IActionResult GetAllSongs()
 		{
+			///Query syntax
 			var result = from song in _dbContext.Songs
 						 orderby song.Artist ascending
 						 select new
@@ -45,6 +46,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongsJoinedWithAlbum")]
 		public IActionResult GetAllSongsJoinedWithAlbum()
 		{
+			///Query syntax
 			var result = from song in _dbContext.Songs
 						 join album in _dbContext.Albums
 						 on song.AlbumId equals album.Id
@@ -67,6 +69,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongsOfAlbum")]
 		public IActionResult GetAllSongsOfAlbum()
 		{
+			///Query syntax
 			var result = from album in _dbContext.Albums
 						 orderby album.Title ascending
 						 select new
@@ -98,6 +101,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetSongsByRating/rating={rating}")]
 		public IActionResult GetSongsByRating(int rating)
 		{
+			///Query syntax
 			var result = from song in _dbContext.Songs
 						 where song.Rating >= rating
 						 orderby song.Title ascending
@@ -113,6 +117,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetSongsByGenre/genre={genre}")]
 		public IActionResult GetSongsByGenre(string genre)
 		{
+			///Query syntax
 			var result = from song in _dbContext.Songs
 						 where EF.Functions.Like(song.Genre, $"%{genre}%") //Directly 'LIKE' operator in SQL -- LINQ does not contain a LIKE operator
 						 orderby song.Title ascending
@@ -128,6 +133,13 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetSongsPagniated/pageIndex={pageIndex}&pageSize={pageSize}")]
 		public IActionResult GetSongsPagniated(int pageIndex, int pageSize)
 		{
+			///Query Syntax
+			var queryResult = (from song in _dbContext.Songs
+							   select song)
+							   .Skip((pageIndex - 1) * pageSize)	//Query syntax does not have skip
+							   .Take(pageSize);                     //Query syntax does not have take
+
+			///Method syntax
 			//Get all songs
 			var allSongs = _dbContext.Songs;
 
@@ -142,8 +154,13 @@ namespace DotNetPracticeExamples.Controllers
 			//'Take' elements by size
 			var takeSongs = skippedSongs.Take(pageSize);
 
-			if(takeSongs != null)
-			{ return StatusCode(200, takeSongs); }
+			//Same as above in one line
+			var methodResult = _dbContext.Songs
+							   .Skip((pageIndex - 1) * pageSize)
+							   .Take(pageSize);
+
+			if(methodResult != null)
+			{ return StatusCode(200, methodResult); }
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
