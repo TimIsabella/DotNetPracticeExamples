@@ -136,16 +136,13 @@ namespace DotNetPracticeExamples.Controllers
 							   .Take(pageSize);                     //Query syntax does not have take
 
 			///Method Syntax
-			//Get all songs
-			var allSongs = _dbContext.Songs;
-
 			//'Skip' songs elements by pagination formula
 			//- formula establishes proper element start position
 			//- Example:
 			//-- Page 1 with 3 results: 0 * 3 = 0 -- 0 index starting point
 			//-- Page 2 with 3 results: 1 * 3 = 3 -- 3 index starting point
 			//-- Page 3 with 3 results: 2 * 3 = 6 -- 6 index starting point
-			var skippedSongs = allSongs.Skip((pageIndex - 1) * pageSize);
+			var skippedSongs = _dbContext.Songs.Skip((pageIndex - 1) * pageSize);
 
 			//'Take' elements by size
 			var takeSongs = skippedSongs.Take(pageSize);
