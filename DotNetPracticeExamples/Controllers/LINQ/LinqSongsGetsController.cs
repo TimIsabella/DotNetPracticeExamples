@@ -29,11 +29,9 @@ namespace DotNetPracticeExamples.Controllers
 		{
 			///Query syntax
 			var queryResult = from song in _dbContext.Songs
-							  orderby song.Artist ascending
-							  select song;						//'select' with no properties returns all information
+							  select song;                   //'select' with no properties returns all information
 
-			var methodResult = _dbContext.Songs
-							   .OrderBy(song => song.Artist);	//No select returns all information
+			var methodResult = _dbContext.Songs;			 //No select returns all information
 
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
@@ -244,7 +242,7 @@ namespace DotNetPracticeExamples.Controllers
 											  Artist = song.Artist,
 											  Title = song.Title,
 											  Duration = song.Duration.ToString(@"mm\:ss"),
-										  }).ToList()
+										  }).ToList() //Returns multiple results and must be converted to a list
 							  });
 
 			if(methodResult != null)
@@ -254,5 +252,18 @@ namespace DotNetPracticeExamples.Controllers
 		}
 
 		/// /////////// Get All Albums And List Songs ///////////
+		[HttpGet("GetAllGenres")]
+		public IActionResult GetAllGenres()
+		{
+			var queryResult = from genres in _dbContext.Genre
+							  select genres;
+
+			var methodResult = _dbContext.Genre;
+			
+			if(methodResult != null)
+			{ return StatusCode(200, methodResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
 	}
 }
