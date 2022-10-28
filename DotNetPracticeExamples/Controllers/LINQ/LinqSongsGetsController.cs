@@ -70,11 +70,13 @@ namespace DotNetPracticeExamples.Controllers
 
 			///Method Syntax
 			var methodResult = _dbContext.Songs
-							   .Join(_dbContext.Albums, 
-									 song => song.AlbumId, 
-									 album => album.Id, 
-									 (song, album) => new {Song = song, Album = album}
-								    )
+							   .Join(_dbContext.Albums, song => song.AlbumId, album => album.Id, 
+									 (song, album) => new 
+									 {
+										 Song = song,
+										 Album = album
+									 })
+							   //.OrderBy(result => result.Album.Title)
 							   .Select(result => new 
 							   { 
 									Artist = result.Song.Artist,
