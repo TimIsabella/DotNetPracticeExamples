@@ -16,6 +16,9 @@ namespace DotNetPracticeExamples.Models
 		[Required(ErrorMessage = "Input Error: The 'Genre' field cannot be empty.")]
 		public string Genre { get; set; }
 
+		[Required(ErrorMessage = "Input Error: The 'GenreId' field cannot be empty.")]
+		public int GenreId { get; set; }
+
 		public string? CoverArtUrl { get; set; }
 
 		public int? Rating { get; set; }

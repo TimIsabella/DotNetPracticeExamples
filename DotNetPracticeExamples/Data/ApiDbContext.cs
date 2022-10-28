@@ -17,6 +17,7 @@ namespace DotNetPracticeExamples.Data
 		public DbSet<Song> Songs { get; set; }
 		public DbSet<Album> Albums { get; set; }
 		public DbSet<SongWithImage> SongsWithImage { get; set; }
+		public DbSet<Genre> Genre { get; set; }
 
 		//Add entries to database upon 'database-update'
 		//Override method of 'DbContext' class '.OnModelCreating()' to add database entries upon database creation
@@ -31,6 +32,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Psyonysus",
 					Title = "Exit Samsara",
 					Genre = "Psytrance",
+					GenreId = 1,
 					Duration = new TimeSpan(0, 8, 25),
 					AlbumId = 1,
 					Rating = 11,
@@ -44,6 +46,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Psyonysus",
 					Title = "Tryptonite",
 					Genre = "Psytrance",
+					GenreId = 1,
 					Duration = new TimeSpan(0, 8, 36),
 					AlbumId = 1,
 					Rating = 22,
@@ -57,6 +60,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "LIFTSHIFT",
 					Title = "Plant Life",
 					Genre = "Psytrance",
+					GenreId = 1,
 					Duration = new TimeSpan(0, 9, 26),
 					AlbumId = 1,
 					Rating = 33,
@@ -70,6 +74,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Stereofeld",
 					Title = "No Fear",
 					Genre = "Psytrance",
+					GenreId = 1,
 					Duration = new TimeSpan(0, 6, 55),
 					AlbumId = null,
 					Rating = 44,
@@ -83,6 +88,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Justice",
 					Title = "Genesis",
 					Genre = "Pop electronic",
+					GenreId = 3,
 					Duration = new TimeSpan(0, 3, 12),
 					AlbumId = 2,
 					Rating = 55,
@@ -96,6 +102,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Sir Sly",
 					Title = "High",
 					Genre = "Pop",
+					GenreId = 2,
 					Duration = new TimeSpan(0, 3, 49),
 					AlbumId = 2,
 					Rating = 66,
@@ -109,6 +116,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Jungle",
 					Title = "Busy Earnin'",
 					Genre = "Pop Disco",
+					GenreId = 5,
 					Duration = new TimeSpan(0, 2, 28),
 					AlbumId = 2,
 					Rating = 77,
@@ -122,6 +130,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Bignic",
 					Title = "Gladius",
 					Genre = "Television OST",
+					GenreId = 8,
 					Duration = new TimeSpan(0, 5, 26),
 					AlbumId = 3,
 					Rating = 88,
@@ -135,6 +144,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "In Quantum",
 					Title = "Odyssey",
 					Genre = "Ambient",
+					GenreId = 9,
 					Duration = new TimeSpan(0, 4, 6),
 					AlbumId = null,
 					Rating = 99,
@@ -148,6 +158,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Fatboy Slim",
 					Title = "Bird of Prey",
 					Genre = "Pop Electronic",
+					GenreId = 3,
 					Duration = new TimeSpan(0, 3, 46),
 					AlbumId = 2,
 					Rating = 11,
@@ -161,6 +172,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Ivan Torrent",
 					Title = "Architects of Life (Feat. Celica Soldream)",
 					Genre = "Classic Electronic",
+					GenreId = 10,
 					Duration = new TimeSpan(0, 4, 54),
 					AlbumId = 3,
 					Rating = 22,
@@ -176,6 +188,7 @@ namespace DotNetPracticeExamples.Data
 					Id = 1,
 					Title = "Psytrance Album",
 					Genre = "Psytrance",
+					GenreId = 1,
 					CoverArtUrl = "https://www.website.com/coverart.jpg",
 					Rating = 11,
 					StatusId = 1,
@@ -187,6 +200,7 @@ namespace DotNetPracticeExamples.Data
 					Id = 2,
 					Title = "Popular Album",
 					Genre = "Pop",
+					GenreId = 4,
 					CoverArtUrl = "https://www.popwebsite.com/coverart.jpg",
 					Rating = 22,
 					StatusId = 2,
@@ -198,10 +212,80 @@ namespace DotNetPracticeExamples.Data
 					Id = 3,
 					Title = "Mix Album",
 					Genre = "Various",
+					GenreId = 11,
 					CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
 					Rating = 33,
 					StatusId = 3,
 					ForSale = true
+				}
+			);
+
+			//Genres
+			modelBuilder.Entity<Genre>().HasData(
+				new Genre
+				{
+					Id = 1,
+					GenreType = "Psytrance"
+				},
+
+				new Genre
+				{
+					Id = 2,
+					GenreType = "Electronic"
+				},
+
+				new Genre
+				{
+					Id = 3,
+					GenreType = "Pop Electronic"
+				},
+
+				new Genre
+				{
+					Id = 4,
+					GenreType = "Pop"
+				},
+
+				new Genre
+				{
+					Id = 5,
+					GenreType = "Disco"
+				},
+
+				new Genre
+				{
+					Id = 6,
+					GenreType = "Pop Disco"
+				},
+
+				new Genre
+				{
+					Id = 7,
+					GenreType = "Pop Disco"
+				},
+
+				new Genre
+				{
+					Id = 8,
+					GenreType = "Television OST"
+				},
+
+				new Genre
+				{
+					Id = 9,
+					GenreType = "Ambient"
+				},
+
+				new Genre
+				{
+					Id = 10,
+					GenreType = "Classic Electronic"
+				},
+
+				new Genre
+				{
+					Id = 11,
+					GenreType = "Various"
 				}
 			);
 		}
