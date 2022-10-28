@@ -33,7 +33,7 @@ namespace DotNetPracticeExamples.Controllers
 							  select song;						//'select' with no properties returns all information
 
 			var methodResult = _dbContext.Songs
-							   .OrderBy(song => song.Artist);	//No select and returns all information
+							   .OrderBy(song => song.Artist);	//No select returns all information
 
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
