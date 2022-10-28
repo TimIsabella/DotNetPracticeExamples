@@ -51,7 +51,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  Duration = song.Duration.ToString(@"mm\:ss"), //Break down TimeSpan duration to 01:23 time format
+								  Duration = song.Duration.ToString(@"mm\:ss") //Break down TimeSpan duration to 01:23 time format
 							  };
 
 			///Method Syntax
@@ -62,7 +62,7 @@ namespace DotNetPracticeExamples.Controllers
 							   {
 								   Artist = song.Artist,
 								   Title = song.Title,
-								   Duration = song.Duration.ToString(@"mm\:ss"), //Break down TimeSpan duration to 01:23 time format
+								   Duration = song.Duration.ToString(@"mm\:ss") //Break down TimeSpan duration to 01:23 time format
 							   });
 
 			if(methodResult != null)
@@ -83,7 +83,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  Duration = song.Duration.ToString(@"mm\:ss"),
+								  Duration = song.Duration.ToString(@"mm\:ss")
 							  };
 
 			///Method Syntax
@@ -94,7 +94,7 @@ namespace DotNetPracticeExamples.Controllers
 							   {
 								   Artist = song.Artist,
 								   Title = song.Title,
-								   Duration = song.Duration.ToString(@"mm\:ss"),
+								   Duration = song.Duration.ToString(@"mm\:ss")
 							   });
 
 			if(methodResult != null)
@@ -114,7 +114,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  Duration = song.Duration.ToString(@"mm\:ss"),
+								  Duration = song.Duration.ToString(@"mm\:ss")
 							  };
 
 			if(queryResult != null)
@@ -170,7 +170,7 @@ namespace DotNetPracticeExamples.Controllers
 								  Artist = song.Artist,
 								  Title = song.Title,
 								  Album = album.Title,
-								  Duration = song.Duration.ToString(@"mm\:ss"),
+								  Duration = song.Duration.ToString(@"mm\:ss")
 							  };
 
 			///Method Syntax
@@ -190,7 +190,7 @@ namespace DotNetPracticeExamples.Controllers
 								   Artist = result.Song.Artist,
 								   Title = result.Song.Title,
 								   Album = result.Album.Title,
-								   Duration = result.Song.Duration.ToString(@"mm\:ss"),
+								   Duration = result.Song.Duration.ToString(@"mm\:ss")
 							   });
 
 			if(methodResult != null)
@@ -220,7 +220,7 @@ namespace DotNetPracticeExamples.Controllers
 											 {
 												 Artist = song.Artist,
 												 Title = song.Title,
-												 Duration = song.Duration.ToString(@"mm\:ss"),
+												 Duration = song.Duration.ToString(@"mm\:ss")
 											 }
 										  ).ToList() //Returns multiple results and must be converted to a list
 							  };
@@ -241,7 +241,7 @@ namespace DotNetPracticeExamples.Controllers
 										  {
 											  Artist = song.Artist,
 											  Title = song.Title,
-											  Duration = song.Duration.ToString(@"mm\:ss"),
+											  Duration = song.Duration.ToString(@"mm\:ss")
 										  }).ToList() //Returns multiple results and must be converted to a list
 							  });
 
@@ -262,6 +262,34 @@ namespace DotNetPracticeExamples.Controllers
 			
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
+
+		/// /////////// Get All Albums And List Songs ///////////
+		[HttpGet("GetAllSongsOfGenre")]
+		public IActionResult GetAllSongsOfGenre()
+		{
+			var queryResult = from genre in _dbContext.Genre
+							  select new {
+											Genre = genre,
+											Songs = (
+														from song in _dbContext.Songs
+														where song.GenreId == genre.Id
+														orderby song.Artist ascending
+														select new
+														{
+															Artist = song.Artist,
+															Title = song.Title,
+															Duration = song.Duration.ToString(@"mm\:ss")
+														}
+
+													).ToList()
+										};
+
+
+			if(queryResult != null)
+			{ return StatusCode(200, queryResult); }
 			else
 			{ return StatusCode(404, "No results found"); }
 		}

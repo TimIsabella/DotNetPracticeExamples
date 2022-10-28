@@ -102,7 +102,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Sir Sly",
 					Title = "High",
 					Genre = "Pop",
-					GenreId = 2,
+					GenreId = 4,
 					Duration = new TimeSpan(0, 3, 49),
 					AlbumId = 2,
 					Rating = 66,
@@ -116,7 +116,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Jungle",
 					Title = "Busy Earnin'",
 					Genre = "Pop Disco",
-					GenreId = 5,
+					GenreId = 6,
 					Duration = new TimeSpan(0, 2, 28),
 					AlbumId = 2,
 					Rating = 77,
@@ -130,7 +130,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Bignic",
 					Title = "Gladius",
 					Genre = "Television OST",
-					GenreId = 8,
+					GenreId = 7,
 					Duration = new TimeSpan(0, 5, 26),
 					AlbumId = 3,
 					Rating = 88,
@@ -144,7 +144,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "In Quantum",
 					Title = "Odyssey",
 					Genre = "Ambient",
-					GenreId = 9,
+					GenreId = 8,
 					Duration = new TimeSpan(0, 4, 6),
 					AlbumId = null,
 					Rating = 99,
@@ -172,7 +172,7 @@ namespace DotNetPracticeExamples.Data
 					Artist = "Ivan Torrent",
 					Title = "Architects of Life (Feat. Celica Soldream)",
 					Genre = "Classic Electronic",
-					GenreId = 10,
+					GenreId = 9,
 					Duration = new TimeSpan(0, 4, 54),
 					AlbumId = 3,
 					Rating = 22,
@@ -212,7 +212,7 @@ namespace DotNetPracticeExamples.Data
 					Id = 3,
 					Title = "Mix Album",
 					Genre = "Various",
-					GenreId = 11,
+					GenreId = 10,
 					CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
 					Rating = 33,
 					StatusId = 3,
@@ -261,31 +261,31 @@ namespace DotNetPracticeExamples.Data
 				new Genre
 				{
 					Id = 7,
-					GenreType = "Pop Disco"
-				},
-
-				new Genre
-				{
-					Id = 8,
 					GenreType = "Television OST"
 				},
 
 				new Genre
 				{
-					Id = 9,
+					Id = 8,
 					GenreType = "Ambient"
 				},
 
 				new Genre
 				{
-					Id = 10,
+					Id = 9,
 					GenreType = "Classic Electronic"
 				},
 
 				new Genre
 				{
-					Id = 11,
+					Id = 10,
 					GenreType = "Various"
+				},
+
+				new Genre
+				{
+					Id = 11,
+					GenreType = "Other"
 				}
 			);
 		}

@@ -82,7 +82,7 @@ namespace DotNetPracticeExamples.Migrations
                             CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
                             ForSale = true,
                             Genre = "Various",
-                            GenreId = 11,
+                            GenreId = 10,
                             Rating = 33,
                             StatusId = 3,
                             Title = "Mix Album"
@@ -137,27 +137,27 @@ namespace DotNetPracticeExamples.Migrations
                         new
                         {
                             Id = 7,
-                            GenreType = "Pop Disco"
-                        },
-                        new
-                        {
-                            Id = 8,
                             GenreType = "Television OST"
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 8,
                             GenreType = "Ambient"
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 9,
                             GenreType = "Classic Electronic"
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 10,
                             GenreType = "Various"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            GenreType = "Other"
                         });
                 });
 
@@ -275,7 +275,7 @@ namespace DotNetPracticeExamples.Migrations
                             Duration = new TimeSpan(0, 0, 3, 49, 0),
                             ForSale = false,
                             Genre = "Pop",
-                            GenreId = 2,
+                            GenreId = 4,
                             Rating = 66,
                             StatusId = 3,
                             Title = "High"
@@ -288,7 +288,7 @@ namespace DotNetPracticeExamples.Migrations
                             Duration = new TimeSpan(0, 0, 2, 28, 0),
                             ForSale = true,
                             Genre = "Pop Disco",
-                            GenreId = 5,
+                            GenreId = 6,
                             Rating = 77,
                             StatusId = 1,
                             Title = "Busy Earnin'"
@@ -301,7 +301,7 @@ namespace DotNetPracticeExamples.Migrations
                             Duration = new TimeSpan(0, 0, 5, 26, 0),
                             ForSale = false,
                             Genre = "Television OST",
-                            GenreId = 8,
+                            GenreId = 7,
                             Rating = 88,
                             StatusId = 2,
                             Title = "Gladius"
@@ -313,7 +313,7 @@ namespace DotNetPracticeExamples.Migrations
                             Duration = new TimeSpan(0, 0, 4, 6, 0),
                             ForSale = true,
                             Genre = "Ambient",
-                            GenreId = 9,
+                            GenreId = 8,
                             Rating = 99,
                             StatusId = 3,
                             Title = "Odyssey"
@@ -339,7 +339,7 @@ namespace DotNetPracticeExamples.Migrations
                             Duration = new TimeSpan(0, 0, 4, 54, 0),
                             ForSale = true,
                             Genre = "Classic Electronic",
-                            GenreId = 10,
+                            GenreId = 9,
                             Rating = 22,
                             StatusId = 2,
                             Title = "Architects of Life (Feat. Celica Soldream)"
