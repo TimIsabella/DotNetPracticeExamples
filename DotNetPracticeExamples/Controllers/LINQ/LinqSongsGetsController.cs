@@ -5,6 +5,7 @@ using DotNetPracticeExamples.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace DotNetPracticeExamples.Controllers
 {
@@ -29,20 +30,41 @@ namespace DotNetPracticeExamples.Controllers
 			///Query syntax
 			var queryResult = from song in _dbContext.Songs
 							  orderby song.Artist ascending
+							  select song;						//'select' returns all information
+
+			var methodResult = _dbContext.Songs
+							   .OrderBy(song => song.Artist);	//No select and returns all information
+
+			if(methodResult != null)
+			{ return StatusCode(200, methodResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
+
+		/// /////////// Get All Songs by Genre ///////////
+		[HttpGet("GetSongsByGenre/genre={genre}")]
+		public IActionResult GetSongsByGenre(string genre)
+		{
+			///Query Syntax
+			var queryResult = from song in _dbContext.Songs
+							  where EF.Functions.Like(song.Genre, $"%{genre}%") //Directly 'LIKE' operator in SQL -- LINQ does not contain a LIKE operator
+							  orderby song.Title ascending
 							  select new
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  Duration = song.Duration
+								  DurationMinutes = song.Duration.Minutes
 							  };
 
+			///Method Syntax
 			var methodResult = _dbContext.Songs
-							   .OrderBy(song => song.Artist)
+							   .Where(song => EF.Functions.Like(song.Genre, $"%{genre}%"))
+							   .OrderBy(song => song.Title)
 							   .Select(song => new
 							   {
 								   Artist = song.Artist,
 								   Title = song.Title,
-								   Duration = song.Duration
+								   DurationMinutes = song.Duration.TotalMinutes
 							   });
 
 			if(methodResult != null)
@@ -51,20 +73,31 @@ namespace DotNetPracticeExamples.Controllers
 			{ return StatusCode(404, "No results found"); }
 		}
 
-		/// /////////// Get All Songs by Rating ///////////
-		[HttpGet("GetSongsByRating/rating={rating}")]
-		public IActionResult GetSongsByRating(int rating)
+		/// /////////// Get All Songs by Rating Greater Than ///////////
+		[HttpGet("GetSongsByRatingGreaterThan/rating={rating}")]
+		public IActionResult GetSongsByRatingGreaterThan(int rating)
 		{
 			///Query Syntax
 			var queryResult = from song in _dbContext.Songs
 							  where song.Rating >= rating
 							  orderby song.Title ascending
-							  select song;
+							  select new
+							  {
+								  Artist = song.Artist,
+								  Title = song.Title,
+								  DurationMinutes = song.Duration.Minutes
+							  };
 
 			///Method Syntax
 			var methodResult = _dbContext.Songs
 							   .Where(song => song.Rating >= rating)
-							   .OrderBy(song => song.Title);
+							   .OrderBy(song => song.Title)
+							   .Select(song => new
+							   {
+								   Artist = song.Artist,
+								   Title = song.Title,
+								   DurationMinutes = song.Duration.TotalMinutes
+							   });
 
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
@@ -72,23 +105,22 @@ namespace DotNetPracticeExamples.Controllers
 			{ return StatusCode(404, "No results found"); }
 		}
 
-		/// /////////// Get All Songs by Rating ///////////
-		[HttpGet("GetSongsByGenre/genre={genre}")]
-		public IActionResult GetSongsByGenre(string genre)
+		/// /////////// Get All Songs By Duration ///////////
+		[HttpGet("GetSongsByDurationGreaterThan/duration={duration}")]
+		public IActionResult GetSongsByDurationGreaterThan(int duration)
 		{
-			///Query Syntax
 			var queryResult = from song in _dbContext.Songs
-							  where EF.Functions.Like(song.Genre, $"%{genre}%") //Directly 'LIKE' operator in SQL -- LINQ does not contain a LIKE operator
-							  orderby song.Title ascending
-							  select song;
+							  where song.Duration.Minutes >= duration
+							  orderby song.Duration.Minutes
+							  select new
+							  {
+								  Artist = song.Artist,
+								  Title = song.Title,
+								  Duration = $"{Math.Abs(song.Duration.Minutes)} : {song.Duration.TotalSeconds - (Math.Abs(song.Duration.Minutes) * 60)}",
+							  };
 
-			///Method Syntax
-			var methodResult = _dbContext.Songs
-							   .Where(song => EF.Functions.Like(song.Genre, $"%{genre}%"))
-							   .OrderBy(song => song.Title);
-
-			if(methodResult != null)
-			{ return StatusCode(200, methodResult); }
+			if(queryResult != null)
+			{ return StatusCode(200, queryResult); }
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
@@ -143,7 +175,7 @@ namespace DotNetPracticeExamples.Controllers
 								  Artist = song.Artist,
 								  Title = song.Title,
 								  Album = album.Title,
-								  Duration = song.Duration
+								  DurationMinutes = song.Duration.Minutes
 							  };
 
 			///Method Syntax
@@ -163,7 +195,7 @@ namespace DotNetPracticeExamples.Controllers
 								   Artist = result.Song.Artist,
 								   Title = result.Song.Title,
 								   Album = result.Album.Title,
-								   Duration = result.Song.Duration
+								   DurationMinutes = result.Song.Duration.Minutes
 							   });
 
 			if(methodResult != null)
@@ -193,7 +225,7 @@ namespace DotNetPracticeExamples.Controllers
 											 {
 												 Artist = song.Artist,
 												 Title = song.Title,
-												 Duration = song.Duration
+												 DurationMinutes = song.Duration.Minutes
 											 }
 										  ).ToList() //Returns multiple results and must be converted to a list
 							  };
@@ -214,7 +246,7 @@ namespace DotNetPracticeExamples.Controllers
 										  {
 											  Artist = song.Artist,
 											  Title = song.Title,
-											  Duration = song.Duration
+											  DurationMinutes = song.Duration.Minutes
 										  }).ToList()
 							  });
 
