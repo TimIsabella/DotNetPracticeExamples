@@ -53,7 +53,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  Duration = song.Duration.ToString(@"mm\:ss"), //Break down duration to 1:23 time format
+								  Duration = song.Duration.ToString(@"mm\:ss"), //Break down TimeSpan duration to 1:23 time format
 							  };
 
 			///Method Syntax
@@ -64,7 +64,7 @@ namespace DotNetPracticeExamples.Controllers
 							   {
 								   Artist = song.Artist,
 								   Title = song.Title,
-								   Duration = song.Duration.ToString(@"mm\:ss"), //Break down duration to 1:23 time format
+								   Duration = song.Duration.ToString(@"mm\:ss"), //Break down TimeSpan duration to 1:23 time format
 							   });
 
 			if(methodResult != null)
