@@ -53,7 +53,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  DurationMinutes = song.Duration.Minutes
+								  Duration = song.Duration.ToString(@"mm\:ss"), //Break down duration to 1:23 time format
 							  };
 
 			///Method Syntax
@@ -64,7 +64,7 @@ namespace DotNetPracticeExamples.Controllers
 							   {
 								   Artist = song.Artist,
 								   Title = song.Title,
-								   DurationMinutes = song.Duration.TotalMinutes
+								   Duration = song.Duration.ToString(@"mm\:ss"), //Break down duration to 1:23 time format
 							   });
 
 			if(methodResult != null)
@@ -85,7 +85,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  DurationMinutes = song.Duration.Minutes
+								  Duration = song.Duration.ToString(@"mm\:ss"),
 							  };
 
 			///Method Syntax
@@ -96,7 +96,7 @@ namespace DotNetPracticeExamples.Controllers
 							   {
 								   Artist = song.Artist,
 								   Title = song.Title,
-								   DurationMinutes = song.Duration.TotalMinutes
+								   Duration = song.Duration.ToString(@"mm\:ss"),
 							   });
 
 			if(methodResult != null)
@@ -116,7 +116,7 @@ namespace DotNetPracticeExamples.Controllers
 							  {
 								  Artist = song.Artist,
 								  Title = song.Title,
-								  Duration = $"{Math.Abs(song.Duration.Minutes)} : {song.Duration.TotalSeconds - (Math.Abs(song.Duration.Minutes) * 60)}",
+								  Duration = song.Duration.ToString(@"mm\:ss"),
 							  };
 
 			if(queryResult != null)
@@ -175,7 +175,7 @@ namespace DotNetPracticeExamples.Controllers
 								  Artist = song.Artist,
 								  Title = song.Title,
 								  Album = album.Title,
-								  DurationMinutes = song.Duration.Minutes
+								  Duration = song.Duration.ToString(@"mm\:ss"),
 							  };
 
 			///Method Syntax
@@ -195,7 +195,7 @@ namespace DotNetPracticeExamples.Controllers
 								   Artist = result.Song.Artist,
 								   Title = result.Song.Title,
 								   Album = result.Album.Title,
-								   DurationMinutes = result.Song.Duration.Minutes
+								   Duration = result.Song.Duration.ToString(@"mm\:ss"),
 							   });
 
 			if(methodResult != null)
@@ -225,7 +225,7 @@ namespace DotNetPracticeExamples.Controllers
 											 {
 												 Artist = song.Artist,
 												 Title = song.Title,
-												 DurationMinutes = song.Duration.Minutes
+												 Duration = song.Duration.ToString(@"mm\:ss"),
 											 }
 										  ).ToList() //Returns multiple results and must be converted to a list
 							  };
@@ -246,7 +246,7 @@ namespace DotNetPracticeExamples.Controllers
 										  {
 											  Artist = song.Artist,
 											  Title = song.Title,
-											  DurationMinutes = song.Duration.Minutes
+											  Duration = song.Duration.ToString(@"mm\:ss"),
 										  }).ToList()
 							  });
 
