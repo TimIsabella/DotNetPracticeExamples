@@ -213,7 +213,7 @@ namespace DotNetPracticeExamples.Controllers
 								  Album = album.Title,
 								  Genre = album.Genre,
 
-								  //List of songs
+								  //List of songs in album
 								  Songs = (
 											 from song in _dbContext.Songs
 											 where song.AlbumId == album.Id
@@ -235,7 +235,7 @@ namespace DotNetPracticeExamples.Controllers
 								  Album = album.Title,
 								  Genre = album.Genre,
 
-								  //List of songs
+								  //List of songs in album
 								  Songs = _dbContext.Songs
 										  .Where(song => song.AlbumId == album.Id)
 										  .OrderBy(song => song.Artist)
