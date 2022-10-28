@@ -30,7 +30,7 @@ namespace DotNetPracticeExamples.Controllers
 			///Query syntax
 			var queryResult = from song in _dbContext.Songs
 							  orderby song.Artist ascending
-							  select song;						//'select' returns all information
+							  select song;						//'select' with no properties returns all information
 
 			var methodResult = _dbContext.Songs
 							   .OrderBy(song => song.Artist);	//No select and returns all information
