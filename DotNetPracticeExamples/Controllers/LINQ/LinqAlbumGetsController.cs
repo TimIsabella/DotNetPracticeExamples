@@ -29,7 +29,7 @@ namespace DotNetPracticeExamples.Controllers
 		/// Select, Where, OrderBy, OrderByDescending, ThenBy, ThenByDescending, Join, GroupJoin, GroupBy, Distinct, Concat, Union, Intersect, Except, Zip, Skip, SkipWhile, 
 		/// Take, TakeWhile, Reverse, ToArray, ToList, ToDictionary, ToLookup, AsEnumerable, Cast, OfType, First, FirstOrDefault, Last, LastOrDefault, Single, SingleOrDefault, 
 		/// ElementAt, Min, Max, Average, Sum, Aggregate
-		
+
 
 		/// /////////// Get All Albums And List Songs ///////////
 		[HttpGet("GetAllSongsOfAlbum")]
@@ -93,8 +93,8 @@ namespace DotNetPracticeExamples.Controllers
 							  select new
 							  {
 								  Album = album.Title,
-																										///Create new TimeSpan based on sum total of song list duration
-								  Duration = new TimeSpan(songList.Sum(song => song.Duration.Hours),	//Get Sum total of songs hours
+								  ///Create new TimeSpan based on sum total of song list duration
+								  Duration = new TimeSpan(songList.Sum(song => song.Duration.Hours),    //Get Sum total of songs hours
 														  songList.Sum(song => song.Duration.Minutes),  //Get Sum total of songs minutes
 														  songList.Sum(song => song.Duration.Seconds)   //Get Sum total of songs seconds
 														 ).ToString(@"hh\:mm\:ss"),
@@ -106,6 +106,28 @@ namespace DotNetPracticeExamples.Controllers
 											   Title = song.Title,
 											   Duration = song.Duration.ToString(@"mm\:ss")
 										   }).ToList()
+							  };
+
+			if(queryResult != null)
+			{ return StatusCode(200, queryResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
+
+		/// /////////// Get All Albums With Total Rating ///////////
+		[HttpGet("GetAllAlbumsWithTotalRating")]
+		public IActionResult GetAllAlbumsWithTotalRating()
+		{
+			var queryResult = from album in _dbContext.Albums
+							  let songList = (from song in _dbContext.Songs
+											  where song.AlbumId == album.Id
+											  select song
+											 ).ToList()
+
+							  select new
+							  {
+								  Album = album.Title,
+								  Rating = songList.Sum(song => song.Rating) / songList.Count
 							  };
 
 			if(queryResult != null)
