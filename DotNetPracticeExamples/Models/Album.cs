@@ -21,8 +21,6 @@ namespace DotNetPracticeExamples.Models
 
 		public string? CoverArtUrl { get; set; }
 
-		public int? Rating { get; set; }
-
 		public int? StatusId { get; set; }
 
 		public bool? ForSale { get; set; }

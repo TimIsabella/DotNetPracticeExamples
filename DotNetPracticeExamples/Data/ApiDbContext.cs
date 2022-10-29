@@ -190,7 +190,6 @@ namespace DotNetPracticeExamples.Data
 					Genre = "Psytrance",
 					GenreId = 1,
 					CoverArtUrl = "https://www.website.com/coverart.jpg",
-					Rating = 11,
 					StatusId = 1,
 					ForSale = true
 				},
@@ -202,7 +201,6 @@ namespace DotNetPracticeExamples.Data
 					Genre = "Pop",
 					GenreId = 4,
 					CoverArtUrl = "https://www.popwebsite.com/coverart.jpg",
-					Rating = 22,
 					StatusId = 2,
 					ForSale = false
 				},
@@ -214,7 +212,6 @@ namespace DotNetPracticeExamples.Data
 					Genre = "Various",
 					GenreId = 10,
 					CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
-					Rating = 33,
 					StatusId = 3,
 					ForSale = true
 				}
