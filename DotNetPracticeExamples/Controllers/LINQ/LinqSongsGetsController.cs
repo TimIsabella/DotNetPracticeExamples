@@ -301,10 +301,10 @@ namespace DotNetPracticeExamples.Controllers
 							  select new
 							  {
 								  Album = album.Title,
-																										///Create new TimeSpan based on song list
+																										///Create new TimeSpan based on sum total of song list duration
 								  Duration = new TimeSpan(songList.Sum(song => song.Duration.Hours),	//Get Sum total of songs hours
 														  songList.Sum(song => song.Duration.Minutes),  //Get Sum total of songs minutes
-														  songList.Sum(song => song.Duration.Seconds)
+														  songList.Sum(song => song.Duration.Seconds)   //Get Sum total of songs seconds
 														  ).ToString(@"hh\:mm\:ss"),
 
 								  Songs = (from song in songList
