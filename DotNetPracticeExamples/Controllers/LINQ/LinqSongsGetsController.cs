@@ -22,6 +22,14 @@ namespace DotNetPracticeExamples.Controllers
 		{ _dbContext = dbContext; }
 
 		/// ///////////////////////////////// GET EXAMPLES WITH LINQ /////////////////////////////////
+		/// - Available keywords in query syntax:
+		/// From, Select, Join, Aggregate, Union, Distinct, Take, Skip, In, Group, OrderBy, ThenBy, Reverse, Let, Into, DefaultIfEmpty, Where, Count, Sum, Min, Max, Average
+
+		/// - Available extension methods in method syntax (most common):
+		/// Select, Where, OrderBy, OrderByDescending, ThenBy, ThenByDescending, Join, GroupJoin, GroupBy, Distinct, Concat, Union, Intersect, Except, Zip, Skip, SkipWhile, 
+		/// Take, TakeWhile, Reverse, ToArray, ToList, ToDictionary, ToLookup, AsEnumerable, Cast, OfType, First, FirstOrDefault, Last, LastOrDefault, Single, SingleOrDefault, 
+		/// ElementAt, Min, Max, Average, Sum, Aggregate
+
 
 		/// /////////// Get All Songs ///////////
 		[HttpGet("GetAllSongs")]
