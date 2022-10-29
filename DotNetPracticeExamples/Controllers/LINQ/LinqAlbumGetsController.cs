@@ -127,7 +127,14 @@ namespace DotNetPracticeExamples.Controllers
 							  select new
 							  {
 								  Album = album.Title,
-								  AverageRating = songList.Sum(song => song.Rating) / songList.Count
+								  AverageRating = songList.Sum(song => song.Rating) / songList.Count,
+								  Songs = (from song in songList
+										   select new
+										   {
+											   Artist = song.Artist,
+											   Title = song.Title,
+											   Rating = song.Rating
+										   }).ToList()
 							  };
 
 			if(queryResult != null)
