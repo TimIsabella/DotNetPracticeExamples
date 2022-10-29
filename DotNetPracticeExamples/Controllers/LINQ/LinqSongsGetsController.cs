@@ -212,17 +212,15 @@ namespace DotNetPracticeExamples.Controllers
 								  Genre = album.Genre,
 
 								  //List of songs in album
-								  Songs = (
-											 from song in _dbContext.Songs
-											 where song.AlbumId == album.Id
-											 orderby song.Artist ascending
-											 select new
-											 {
-												 Artist = song.Artist,
-												 Title = song.Title,
-												 Duration = song.Duration.ToString(@"mm\:ss")
-											 }
-										  ).ToList() //Returns multiple results and must be converted to a list
+								  Songs = (from song in _dbContext.Songs
+										   where song.AlbumId == album.Id
+										   orderby song.Artist ascending
+										   select new
+										   {
+											   Artist = song.Artist,
+											   Title = song.Title,
+											   Duration = song.Duration.ToString(@"mm\:ss")
+										   }).ToList() //Returns multiple results and must be converted to a list
 							  };
 
 			///Method Syntax
@@ -274,18 +272,15 @@ namespace DotNetPracticeExamples.Controllers
 							  select new 
 							  {
 									Genre = genre,
-									Songs = (
-												from song in _dbContext.Songs
-												where song.GenreId == genre.Id
-												orderby song.Artist ascending
-												select new
-												{
-													Artist = song.Artist,
-													Title = song.Title,
-													Duration = song.Duration.ToString(@"mm\:ss")
-												}
-
-											).ToList()
+									Songs = (from song in _dbContext.Songs
+											 where song.GenreId == genre.Id
+											 orderby song.Artist ascending
+											 select new
+											 {
+												 Artist = song.Artist,
+												 Title = song.Title,
+												 Duration = song.Duration.ToString(@"mm\:ss")
+											 }).ToList()
 							  };
 
 
@@ -302,25 +297,25 @@ namespace DotNetPracticeExamples.Controllers
 			var queryResult = from album in _dbContext.Albums
 							  let songList = (from song in _dbContext.Songs
 											  where song.AlbumId == album.Id
-											  select song).ToList()
+											  select song
+											 ).ToList()
 
 							  select new
 							  {
-								  Album = album.Title,													///Create new TimeSpan based on song list
+								  Album = album.Title,
+																										///Create new TimeSpan based on song list
 								  Duration = new TimeSpan(songList.Sum(song => song.Duration.Hours),	//Get Sum total of songs hours
 														  songList.Sum(song => song.Duration.Minutes),  //Get Sum total of songs minutes
-														  songList.Sum(song => song.Duration.Seconds))  //Get Sum total of songs seconds
-														  .ToString(@"hh\:mm\:ss"),
-								  Songs = (
-										   from song in songList
+														  songList.Sum(song => song.Duration.Seconds)
+														  ).ToString(@"hh\:mm\:ss"),
+
+								  Songs = (from song in songList
 										   select new
 										   {
 											   Artist = song.Artist,
 											   Title = song.Title,
 											   Duration = song.Duration.ToString(@"mm\:ss")
-										   }
-
-										  ).ToList()
+										   }).ToList()
 							  };
 
 			if(queryResult != null)
