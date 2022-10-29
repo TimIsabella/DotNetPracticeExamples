@@ -114,9 +114,9 @@ namespace DotNetPracticeExamples.Controllers
 			{ return StatusCode(404, "No results found"); }
 		}
 
-		/// /////////// Get All Albums With Total Rating ///////////
-		[HttpGet("GetAllAlbumsWithTotalRating")]
-		public IActionResult GetAllAlbumsWithTotalRating()
+		/// /////////// Get All Albums With Average Rating ///////////
+		[HttpGet("GetAllAlbumsWithAverageRating")]
+		public IActionResult GetAllAlbumsWithAverageRating()
 		{
 			var queryResult = from album in _dbContext.Albums
 							  let songList = (from song in _dbContext.Songs
