@@ -31,7 +31,7 @@ namespace DotNetPracticeExamples.Controllers
 			var queryResult = from song in _dbContext.Songs
 							  select song;                   //'select' with no properties returns all information
 
-			var methodResult = _dbContext.Songs;			 //No select returns all information
+			var methodResult = _dbContext.Songs;             //No select returns all information
 
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
@@ -130,7 +130,7 @@ namespace DotNetPracticeExamples.Controllers
 			///Query Syntax
 			var queryResult = (from song in _dbContext.Songs
 							   select song)
-							   .Skip((pageIndex - 1) * pageSize)	//Query syntax does not have skip
+							   .Skip((pageIndex - 1) * pageSize)    //Query syntax does not have skip
 							   .Take(pageSize);                     //Query syntax does not have take
 
 			///Method Syntax
@@ -251,7 +251,7 @@ namespace DotNetPracticeExamples.Controllers
 			{ return StatusCode(404, "No results found"); }
 		}
 
-		/// /////////// Get All Albums And List Songs ///////////
+		/// /////////// Get All Genres ///////////
 		[HttpGet("GetAllGenres")]
 		public IActionResult GetAllGenres()
 		{
@@ -259,34 +259,69 @@ namespace DotNetPracticeExamples.Controllers
 							  select genres;
 
 			var methodResult = _dbContext.Genre;
-			
+
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
 
-		/// /////////// Get All Albums And List Songs ///////////
-		[HttpGet("GetAllSongsOfGenre")]
-		public IActionResult GetAllSongsOfGenre()
+		/// /////////// Get All Songs By Genre ///////////
+		[HttpGet("GetAllSongsByGenre")]
+		public IActionResult GetAllSongsByGenre()
 		{
 			var queryResult = from genre in _dbContext.Genre
-							  select new {
-											Genre = genre,
-											Songs = (
-														from song in _dbContext.Songs
-														where song.GenreId == genre.Id
-														orderby song.Artist ascending
-														select new
-														{
-															Artist = song.Artist,
-															Title = song.Title,
-															Duration = song.Duration.ToString(@"mm\:ss")
-														}
+							  select new 
+							  {
+									Genre = genre,
+									Songs = (
+												from song in _dbContext.Songs
+												where song.GenreId == genre.Id
+												orderby song.Artist ascending
+												select new
+												{
+													Artist = song.Artist,
+													Title = song.Title,
+													Duration = song.Duration.ToString(@"mm\:ss")
+												}
 
-													).ToList()
-										};
+											).ToList()
+							  };
 
+
+			if(queryResult != null)
+			{ return StatusCode(200, queryResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
+
+		/// /////////// Get All Albums With Total Duration ///////////
+		[HttpGet("GetAllAlbumsWithTotalDuration")]
+		public IActionResult GetAllAlbumsWithTotalDuration()
+		{
+			var queryResult = from album in _dbContext.Albums
+							  let songList = (from song in _dbContext.Songs
+											  where song.AlbumId == album.Id
+											  select song).ToList()
+
+							  select new
+							  {
+								  Album = album.Title,													///Create new TimeSpan based on song list
+								  Duration = new TimeSpan(songList.Sum(song => song.Duration.Hours),	//Get Sum total of songs hours
+														  songList.Sum(song => song.Duration.Minutes),  //Get Sum total of songs minutes
+														  songList.Sum(song => song.Duration.Seconds))  //Get Sum total of songs seconds
+														  .ToString(@"hh\:mm\:ss"),
+								  Songs = (
+										   from song in songList
+										   select new
+										   {
+											   Artist = song.Artist,
+											   Title = song.Title,
+											   Duration = song.Duration.ToString(@"mm\:ss")
+										   }
+
+										  ).ToList()
+							  };
 
 			if(queryResult != null)
 			{ return StatusCode(200, queryResult); }
