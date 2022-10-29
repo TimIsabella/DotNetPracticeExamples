@@ -283,7 +283,6 @@ namespace DotNetPracticeExamples.Controllers
 											 }).ToList()
 							  };
 
-
 			if(queryResult != null)
 			{ return StatusCode(200, queryResult); }
 			else
@@ -299,7 +298,6 @@ namespace DotNetPracticeExamples.Controllers
 											  where song.AlbumId == album.Id
 											  select song
 											 ).ToList()
-
 							  select new
 							  {
 								  Album = album.Title,
