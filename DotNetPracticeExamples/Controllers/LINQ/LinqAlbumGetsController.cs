@@ -105,7 +105,7 @@ namespace DotNetPracticeExamples.Controllers
 											   Artist = song.Artist,
 											   Title = song.Title,
 											   Duration = song.Duration.ToString(@"mm\:ss")
-										   }).ToList()
+										   })
 							  };
 
 			if(queryResult != null)
@@ -123,7 +123,6 @@ namespace DotNetPracticeExamples.Controllers
 											  where song.AlbumId == album.Id
 											  select song
 											 ).ToList()
-
 							  select new
 							  {
 								  Album = album.Title,
@@ -134,7 +133,7 @@ namespace DotNetPracticeExamples.Controllers
 											   Artist = song.Artist,
 											   Title = song.Title,
 											   Rating = song.Rating
-										   }).ToList()
+										   })
 							  };
 
 			if(queryResult != null)
