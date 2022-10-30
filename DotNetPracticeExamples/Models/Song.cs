@@ -32,9 +32,5 @@ namespace DotNetPracticeExamples.Models
 		public int? CopyrightId { get; set; }
 
 		public bool? ForSale { get; set; }
-
-		public int[]? Formats { get; set; }
-
-		public int[]? Distributors { get; set; }
 	}
 }

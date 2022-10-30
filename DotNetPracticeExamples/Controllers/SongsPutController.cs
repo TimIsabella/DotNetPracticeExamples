@@ -38,7 +38,7 @@ namespace DotNetPracticeExamples.Controllers
 				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
 				song.Rating = songFromClient.Rating;
-				song.StatusId = songFromClient.StatusId;
+				song.CopyrightId = songFromClient.CopyrightId;
 				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();   //'.SaveChanges' (.NET extension of 'DbContext' class) -- Saves changes made to the context to the database
@@ -60,7 +60,7 @@ namespace DotNetPracticeExamples.Controllers
 				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
 				song.Rating = songFromClient.Rating;
-				song.StatusId = songFromClient.StatusId;
+				song.CopyrightId = songFromClient.CopyrightId;
 				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();
@@ -86,7 +86,7 @@ namespace DotNetPracticeExamples.Controllers
 				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
 				song.Rating = songFromClient.Rating;
-				song.StatusId = songFromClient.StatusId;
+				song.CopyrightId = songFromClient.CopyrightId;
 				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();
@@ -112,7 +112,7 @@ namespace DotNetPracticeExamples.Controllers
 				song.Genre = songFromClient.Genre;
 				song.Duration = songFromClient.Duration;
 				song.Rating = songFromClient.Rating;
-				song.StatusId = songFromClient.StatusId;
+				song.CopyrightId = songFromClient.CopyrightId;
 				song.ForSale = songFromClient.ForSale;
 
 				_dbContext.SaveChanges();
@@ -138,7 +138,7 @@ namespace DotNetPracticeExamples.Controllers
 				await Task.FromResult( song.Genre = songFromClient.Genre );
 				await Task.FromResult( song.Duration = songFromClient.Duration );
 				await Task.FromResult( song.Rating = songFromClient.Rating );
-				await Task.FromResult( song.StatusId = songFromClient.StatusId );
+				await Task.FromResult( song.CopyrightId = songFromClient.CopyrightId);
 				await Task.FromResult( song.ForSale = songFromClient.ForSale );
 
 				await Task.FromResult( _dbContext.SaveChanges() );
@@ -165,7 +165,7 @@ namespace DotNetPracticeExamples.Controllers
 				await Task.FromResult(song.Genre = songFromClient.Genre);
 				await Task.FromResult(song.Duration = songFromClient.Duration);
 				await Task.FromResult(song.Rating = songFromClient.Rating);
-				await Task.FromResult(song.StatusId = songFromClient.StatusId);
+				await Task.FromResult(song.CopyrightId = songFromClient.CopyrightId);
 				await Task.FromResult(song.ForSale = songFromClient.ForSale);
 
 				await Task.FromResult( _dbContext.SaveChanges() );
