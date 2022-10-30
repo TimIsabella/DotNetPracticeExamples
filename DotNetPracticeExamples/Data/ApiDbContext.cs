@@ -15,9 +15,12 @@ namespace DotNetPracticeExamples.Data
 		//'DbSet' (.NET extension of 'EntityFrameworkCore' class) -- Maps / creates database tables
 		//- Property will be mapped to table of 'Songs' with columns from 'Song' model
 		public DbSet<Song> Songs { get; set; }
-		public DbSet<Album> Albums { get; set; }
 		public DbSet<SongWithImage> SongsWithImage { get; set; }
-		public DbSet<Genre> Genre { get; set; }
+		public DbSet<Album> Albums { get; set; }
+		public DbSet<Genre> Genres { get; set; }
+		public DbSet<Copyright> Status { get; set; }
+		public DbSet<Distributor> Distributors { get; set; }
+		public DbSet<Format> Formats { get; set; }
 
 		//Add entries to database upon 'database-update'
 		//Override method of 'DbContext' class '.OnModelCreating()' to add database entries upon database creation
@@ -27,7 +30,7 @@ namespace DotNetPracticeExamples.Data
 			//Songs
 			modelBuilder.Entity<Song>().HasData(
 				new Song
-				{ 
+				{
 					Id = 1,
 					Artist = "Psyonysus",
 					Title = "Exit Samsara",
@@ -36,8 +39,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 8, 25),
 					AlbumId = 1,
 					Rating = 11,
-					StatusId = 1,
-					ForSale = true		
+					CopyrightId = 1,
+					ForSale = true,
+					Formats = new int[] { 1, 2 },
+					Distributors = new int[] { 2, 3, 4, 5}
 				},
 
 				new Song
@@ -50,8 +55,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 8, 36),
 					AlbumId = 1,
 					Rating = 22,
-					StatusId = 2,
-					ForSale = false
+					CopyrightId = 2,
+					ForSale = false,
+					Formats = new int[] { 1, 2 },
+					Distributors = new int[] { 2, 3, 4, 5 }
 				},
 
 				new Song
@@ -64,8 +71,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 9, 26),
 					AlbumId = 1,
 					Rating = 33,
-					StatusId = 3,
-					ForSale = true
+					CopyrightId = 3,
+					ForSale = true,
+					Formats = new int[] { 1, 2 },
+					Distributors = new int[] { 2, 3, 4, 5 }
 				},
 
 				new Song
@@ -78,8 +87,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 6, 55),
 					AlbumId = null,
 					Rating = 44,
-					StatusId = 1,
-					ForSale = false
+					CopyrightId = 1,
+					ForSale = false,
+					Formats = new int[] { 1, 2 },
+					Distributors = new int[] { 2, 3, 4, 5 }
 				},
 
 				new Song
@@ -92,8 +103,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 3, 12),
 					AlbumId = 2,
 					Rating = 55,
-					StatusId = 2,
-					ForSale = true
+					CopyrightId = 2,
+					ForSale = true,
+					Formats = new int[] { 1, 2, 3},
+					Distributors = new int[] { 2, 3, 4 }
 				},
 
 				new Song
@@ -106,8 +119,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 3, 49),
 					AlbumId = 2,
 					Rating = 66,
-					StatusId = 3,
-					ForSale = false
+					CopyrightId = 3,
+					ForSale = false,
+					Formats = new int[] { 1, 2, 3 },
+					Distributors = new int[] { 2, 3, 4 }
 				},
 
 				new Song
@@ -120,8 +135,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 2, 28),
 					AlbumId = 2,
 					Rating = 77,
-					StatusId = 1,
-					ForSale = true
+					CopyrightId = 1,
+					ForSale = true,
+					Formats = new int[] { 1, 3, 4 },
+					Distributors = new int[] { 1, 2, 3, 5 }
 				},
 
 				new Song
@@ -134,8 +151,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 5, 26),
 					AlbumId = 3,
 					Rating = 88,
-					StatusId = 2,
-					ForSale = false
+					CopyrightId = 2,
+					ForSale = false,
+					Formats = new int[] { 1 },
+					Distributors = new int[] { 2, 5 }
 				},
 
 				new Song
@@ -148,8 +167,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 4, 6),
 					AlbumId = null,
 					Rating = 99,
-					StatusId = 3,
-					ForSale = true
+					CopyrightId = 3,
+					ForSale = true,
+					Formats = new int[] { 1 },
+					Distributors = new int[] { 3, 5 }
 				},
 
 				new Song
@@ -162,8 +183,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 3, 46),
 					AlbumId = 2,
 					Rating = 11,
-					StatusId = 1,
-					ForSale = true
+					CopyrightId = 1,
+					ForSale = true,
+					Formats = new int[] { 1, 2 },
+					Distributors = new int[] { 2, 3, 4, 5 }
 				},
 
 				new Song
@@ -176,8 +199,10 @@ namespace DotNetPracticeExamples.Data
 					Duration = new TimeSpan(0, 4, 54),
 					AlbumId = 3,
 					Rating = 22,
-					StatusId = 2,
-					ForSale = true
+					CopyrightId = 2,
+					ForSale = true,
+					Formats = new int[] { 1 },
+					Distributors = new int[] { 5 }
 				}
 			);
 
@@ -191,7 +216,9 @@ namespace DotNetPracticeExamples.Data
 					GenreId = 1,
 					CoverArtUrl = "https://www.website.com/coverart.jpg",
 					StatusId = 1,
-					ForSale = true
+					ForSale = true,
+					Formats = new int[] { 1, 2 },
+					Distributors = new int[] { 2, 3, 4, 5 }
 				},
 
 				new Album
@@ -202,7 +229,8 @@ namespace DotNetPracticeExamples.Data
 					GenreId = 4,
 					CoverArtUrl = "https://www.popwebsite.com/coverart.jpg",
 					StatusId = 2,
-					ForSale = false
+					ForSale = false,
+					Formats = new int[] { 2, 3, 4 }
 				},
 
 				new Album
@@ -213,7 +241,9 @@ namespace DotNetPracticeExamples.Data
 					GenreId = 10,
 					CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
 					StatusId = 3,
-					ForSale = true
+					ForSale = true,
+					Formats = new int[] { 1, 2, 3, 4 },
+					Distributors = new int[] { 1, 4 }
 				}
 			);
 
@@ -294,6 +324,110 @@ namespace DotNetPracticeExamples.Data
 					Id = 11,
 					GenreType = "Other",
 					Rating = 22
+				}
+			);
+
+			//Statuses
+			modelBuilder.Entity<Copyright>().HasData(
+				new Copyright
+				{
+					Id = 1,
+					Type = "Licensing"
+				},
+
+				new Copyright
+				{
+					Id = 2,
+					Type = "Fair Use"
+				},
+				new Copyright
+				{
+					Id = 3,
+					Type = "Derivative Works"
+				},
+				new Copyright
+				{
+					Id = 4,
+					Type = "Orphaned Works"
+				},
+				new Copyright
+				{
+					Id = 5,
+					Type = "Public Domain"
+				}
+			);
+
+			//Distributors
+			modelBuilder.Entity<Distributor>().HasData(
+				new Distributor
+				{
+					Id = 1,
+					Name = "Classic Records",
+					City = "Classic City",
+					State = "CA",
+					Address = "123 Fake St",
+					ZipCode = 90210
+				},
+				new Distributor
+				{
+					Id = 2,
+					Name = "DigiMusic",
+					Url = "https://www.digimusic.com",
+					City = "Another City",
+					State = "VA",
+					Address = "PO Box 1234",
+					ZipCode = 23723
+				},
+				new Distributor
+				{
+					Id = 3,
+					Name = "Super Downloads",
+					Url = "https://www.superdownloads.com"
+				},
+				new Distributor
+				{
+					Id = 4,
+					Name = "Great Music Distro",
+					Url = "https://www.GMD.com",
+					City = "Las Vegas",
+					State = "NV",
+					Address = "123 Sunset Blvd.",
+					ZipCode = 89123
+				},
+				new Distributor
+				{
+					Id = 5,
+					Name = "Cheap Music Digital",
+					Url = "https://www.CheapSongs.com"
+				}
+			);
+
+			//Formats
+			modelBuilder.Entity<Format>().HasData(
+				new Format
+				{
+					Id = 1,
+					Type = "Digital Download"
+				},
+				new Format
+				{
+					Id = 2,
+					Type = "Compact Disc"
+				},
+				new Format
+				{
+					Id = 3,
+					Type = "Cassette Tape"
+				},
+				new Format
+				{
+					Id = 4,
+					Type = "Record"
+				},
+				new Format
+				{
+					Id = 5,
+					Type = "Other"
 				}
 			);
 		}

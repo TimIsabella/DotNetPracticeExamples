@@ -29,8 +29,12 @@ namespace DotNetPracticeExamples.Models
 
 		public int? Rating { get; set; }
 
-		public int? StatusId { get; set; }
+		public int? CopyrightId { get; set; }
 
 		public bool? ForSale { get; set; }
+
+		public int[]? Formats { get; set; }
+
+		public int[]? Distributors { get; set; }
 	}
 }

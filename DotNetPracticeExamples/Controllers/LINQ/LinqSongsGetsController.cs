@@ -211,10 +211,10 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllGenres")]
 		public IActionResult GetAllGenres()
 		{
-			var queryResult = from genres in _dbContext.Genre
+			var queryResult = from genres in _dbContext.Genres
 							  select genres;
 
-			var methodResult = _dbContext.Genre;
+			var methodResult = _dbContext.Genres;
 
 			if(methodResult != null)
 			{ return StatusCode(200, methodResult); }
@@ -226,7 +226,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongsByGenre")]
 		public IActionResult GetAllSongsByGenre()
 		{
-			var queryResult = from genre in _dbContext.Genre
+			var queryResult = from genre in _dbContext.Genres
 							  select new 
 							  {
 									Genre = genre,
