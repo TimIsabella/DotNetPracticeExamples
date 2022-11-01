@@ -72,7 +72,7 @@ namespace DotNetPracticeExamples.Data
 			modelBuilder.Entity<SongFormatComposite>().HasData(SongFormatCompositeData.Data);
 
 			//Album Format Composite
-			modelBuilder.Entity<AlbumFormatComposite>().HasKey(composite => new { composite.AlbumId, composite.FormatId });;
+			modelBuilder.Entity<AlbumFormatComposite>().HasKey(composite => new { composite.AlbumId, composite.FormatId });
 			modelBuilder.Entity<AlbumFormatComposite>().HasData(AlbumFormatCompositeData.Data);
 		}
 	}
