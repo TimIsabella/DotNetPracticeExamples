@@ -169,5 +169,40 @@ namespace DotNetPracticeExamples.Controllers
 			else
 			{ return StatusCode(404, "No results found"); }
 		}
+
+		/// /////////// Get All Albums With Formats and Distributors ///////////
+		[HttpGet("GetAllAlbumsWithFormatsAndDistributors")]
+		public IActionResult GetAllAlbumsWithFormatsAndDistributors()
+		{
+			var queryResult = from album in _dbContext.Albums
+
+							  let formatComp = (from formatC in _dbContext.AlbumFormatComposite
+												where album.Id == formatC.AlbumId
+												select formatC).ToList()
+								
+							  let distributorComp = (from distroC in _dbContext.AlbumDistributorComposite
+													 where album.Id == distroC.AlbumId
+													 select distroC).ToList()
+								
+							  select new
+							  {
+								  Album = album.Title,
+								  
+								  Formats = (from formatC in formatComp
+											 from formatL in _dbContext.Formats
+											 where formatC.FormatId == formatL.Id
+											 select formatL.Type).ToList(),
+								  
+								  Distributors = (from distroC in distributorComp
+												  from distroL in _dbContext.Distributors
+												  where distroC.DistributorId == distroL.Id
+												  select distroL.Name).ToList()
+							  };
+
+			if(queryResult != null)
+			{ return StatusCode(200, queryResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
 	}
 }
