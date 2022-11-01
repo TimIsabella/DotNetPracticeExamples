@@ -56,7 +56,11 @@ namespace DotNetPracticeExamples.Data
 			modelBuilder.Entity<Distributor>().HasData(DistributorData.Data);
 
 			//Song Distributor Composite
+
+			//'.HasKey()' sets both columns as the primary key -- to be used as a composite key
+			//- Duplicate values can be added to each column, but not where both column values match another record
 			modelBuilder.Entity<SongDistributorComposite>().HasKey(composite => new { composite.SongId, composite.DistributorId });
+			
 			modelBuilder.Entity<SongDistributorComposite>().HasData(SongDistributorCompositeData.Data);
 
 			//Album Distributor Composite
