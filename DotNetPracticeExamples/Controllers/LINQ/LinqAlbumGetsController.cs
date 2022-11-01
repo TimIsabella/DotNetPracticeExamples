@@ -175,18 +175,20 @@ namespace DotNetPracticeExamples.Controllers
 		{
 			var queryResult = from album in _dbContext.Albums
 
+							  //Format
 							  let formatComp = (from formatC in _dbContext.AlbumFormatComposite
 												where album.Id == formatC.AlbumId
 												select formatC).ToList()
-								
-							  let distributorComp = (from distroC in _dbContext.AlbumDistributorComposite
-													 where album.Id == distroC.AlbumId
-													 select distroC).ToList()
-							  
+
 							  let formatList = (from formatC in formatComp
 												from formatL in _dbContext.Formats
 												where formatC.FormatId == formatL.Id
 												select formatL.Type).ToList()
+							  
+							  //Distributor
+							  let distributorComp = (from distroC in _dbContext.AlbumDistributorComposite
+													 where album.Id == distroC.AlbumId
+													 select distroC).ToList()
 
 							  let distributorList = (from distroC in distributorComp
 													 from distroL in _dbContext.Distributors
