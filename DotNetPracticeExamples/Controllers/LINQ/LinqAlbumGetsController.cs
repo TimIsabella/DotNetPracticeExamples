@@ -152,16 +152,15 @@ namespace DotNetPracticeExamples.Controllers
 												where album.Id == formatC.AlbumId
 												select formatC).ToList()
 							  
-							  //The below cannot be used within the select for 'Formats' for some reason...
-							  //let formatList = _dbContext.Formats.ToList()
+							  let formatList = (from formatC in formatComp
+												from formatL in _dbContext.Formats
+												where formatC.FormatId == formatL.Id
+												select formatL.Type).ToList()
 
 							  select new
 							  {
 								  Album = album.Title,
-								  Formats = (from formatC in formatComp
-											 from formatL in _dbContext.Formats
-											 where formatC.FormatId == formatL.Id
-											 select formatL.Type).ToList()
+								  Formats = formatList
 							  };
 
 			if(queryResult != null)
@@ -183,20 +182,22 @@ namespace DotNetPracticeExamples.Controllers
 							  let distributorComp = (from distroC in _dbContext.AlbumDistributorComposite
 													 where album.Id == distroC.AlbumId
 													 select distroC).ToList()
-								
+							  
+							  let formatList = (from formatC in formatComp
+												from formatL in _dbContext.Formats
+												where formatC.FormatId == formatL.Id
+												select formatL.Type).ToList()
+
+							  let distributorList = (from distroC in distributorComp
+													 from distroL in _dbContext.Distributors
+													 where distroC.DistributorId == distroL.Id
+													 select distroL.Name).ToList()
+
 							  select new
 							  {
 								  Album = album.Title,
-								  
-								  Formats = (from formatC in formatComp
-											 from formatL in _dbContext.Formats
-											 where formatC.FormatId == formatL.Id
-											 select formatL.Type).ToList(),
-								  
-								  Distributors = (from distroC in distributorComp
-												  from distroL in _dbContext.Distributors
-												  where distroC.DistributorId == distroL.Id
-												  select distroL.Name).ToList()
+								  Formats = formatList,
+								  Distributors = distributorList
 							  };
 
 			if(queryResult != null)
