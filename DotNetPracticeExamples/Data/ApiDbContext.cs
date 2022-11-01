@@ -56,24 +56,24 @@ namespace DotNetPracticeExamples.Data
 			modelBuilder.Entity<Distributor>().HasData(DistributorData.Data);
 
 			//Song Distributor Composite
-			modelBuilder.Entity<SongDistributorComposite>().HasData(new SongDistributorComposite
-			{
-				SongId = 1,
-				DistributorId = 2
-			});
+			modelBuilder.Entity<SongDistributorComposite>().HasKey(composite => new { composite.SongId, composite.DistributorId });
+			modelBuilder.Entity<SongDistributorComposite>().HasData(SongDistributorCompositeData.Data);
 
 			//Album Distributor Composite
-			//modelBuilder.Entity<AlbumDistributorComposite>().HasNoKey().HasData(AlbumDistributorCompositeData.Data);
+			modelBuilder.Entity<AlbumDistributorComposite>().HasKey(composite => new { composite.AlbumId, composite.DistributorId });
+			modelBuilder.Entity<AlbumDistributorComposite>().HasData(AlbumDistributorCompositeData.Data);
 
 
 			//Formats
 			modelBuilder.Entity<Format>().HasData(FormatData.Fdata);
 
 			//Song Format Composite
-			//modelBuilder.Entity<SongFormatComposite>().HasNoKey().HasData(SongFormatCompositeData.Data);
+			modelBuilder.Entity<SongFormatComposite>().HasKey(composite => new { composite.SongId, composite.FormatId });
+			modelBuilder.Entity<SongFormatComposite>().HasData(SongFormatCompositeData.Data);
 
 			//Album Format Composite
-			//modelBuilder.Entity<AlbumFormatComposite>().HasNoKey().HasData(AlbumFormatCompositeData.Data);
+			modelBuilder.Entity<AlbumFormatComposite>().HasKey(composite => new { composite.AlbumId, composite.FormatId });;
+			modelBuilder.Entity<AlbumFormatComposite>().HasData(AlbumFormatCompositeData.Data);
 		}
 	}
 }

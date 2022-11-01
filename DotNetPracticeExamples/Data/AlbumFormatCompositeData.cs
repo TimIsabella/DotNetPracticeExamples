@@ -36,7 +36,7 @@ namespace DotNetPracticeExamples.Data
 			new AlbumFormatComposite
 			{
 				AlbumId = 2,
-				FormatId = 3
+				FormatId = 4
 			},
 
 			//Album 3

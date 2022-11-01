@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotNetPracticeExamples.Models.Composites
 {
-	[Keyless]
 	public class AlbumFormatComposite
 	{
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int AlbumId { get; set; }
 
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int FormatId { get; set; }
 	}
 }
