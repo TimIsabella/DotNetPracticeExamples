@@ -12,7 +12,7 @@ namespace DotNetPracticeExamples.Controllers
 	//URL 'Route' -- https://localhost:1234/api/SongsGets
 	//- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
 	//[Route("api/[controller]")]
-	[Route("api/LinqSongsGets")]
+	[Route("api/LinqAlbumsGets")]
 	[ApiController]
 	public class LinqAlbumsGetsController : ControllerBase
 	{
@@ -134,6 +134,34 @@ namespace DotNetPracticeExamples.Controllers
 											   Title = song.Title,
 											   Rating = song.Rating
 										   })
+							  };
+
+			if(queryResult != null)
+			{ return StatusCode(200, queryResult); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
+
+		/// /////////// Get All Albums With Formats ///////////
+		[HttpGet("GetAllAlbumsWithFormats")]
+		public IActionResult GetAllAlbumsWithFormats()
+		{
+			var queryResult = from album in _dbContext.Albums
+
+							  let formatComp = (from formatC in _dbContext.AlbumFormatComposite
+												where album.Id == formatC.AlbumId
+												select formatC).ToList()
+							  
+							  //The below cannot be used within the select for 'Formats' for some reason...
+							  //let formatList = _dbContext.Formats.ToList()
+
+							  select new
+							  {
+								  Album = album.Title,
+								  Formats = (from formatC in formatComp
+											 from formatL in _dbContext.Formats
+											 where formatC.FormatId == formatL.Id
+											 select formatL.Type).ToList()
 							  };
 
 			if(queryResult != null)
