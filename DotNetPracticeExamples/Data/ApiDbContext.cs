@@ -27,12 +27,12 @@ namespace DotNetPracticeExamples.Data
 		//Distributor
 		public DbSet<Distributor> Distributors { get; set; }
 		public DbSet<SongDistributorComposite> SongDistributorComposite { get; set; }
-		//public DbSet<AlbumDistributorComposite> AlbumDistributorComposite { get; set; }
+		public DbSet<AlbumDistributorComposite> AlbumDistributorComposite { get; set; }
 
 		//Formats
 		public DbSet<Format> Formats { get; set; }
-		//public DbSet<SongFormatComposite> SongFormatComposite { get; set; }
-		//public DbSet<AlbumFormatComposite> AlbumFormatComposite { get; set; }
+		public DbSet<SongFormatComposite> SongFormatComposite { get; set; }
+		public DbSet<AlbumFormatComposite> AlbumFormatComposite { get; set; }
 
 		//Add entries to database upon 'database-update'
 		//Override method of 'DbContext' class '.OnModelCreating()' to add database entries upon database creation
