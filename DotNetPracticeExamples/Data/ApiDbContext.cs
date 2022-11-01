@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DotNetPracticeExamples.Models;
-using DotNetPracticeExamples.Models.Bridges;
+using DotNetPracticeExamples.Models.Composites;
 using System;
 
 namespace DotNetPracticeExamples.Data
@@ -26,13 +26,13 @@ namespace DotNetPracticeExamples.Data
 
 		//Distributor
 		public DbSet<Distributor> Distributors { get; set; }
-		public DbSet<SongDistributorBridge> SongDistributorBridge { get; set; }
-		public DbSet<AlbumDistributorBridge> AlbumDistributorBridge { get; set; }
+		public DbSet<SongDistributorComposite> SongDistributorComposite { get; set; }
+		//public DbSet<AlbumDistributorComposite> AlbumDistributorComposite { get; set; }
 
 		//Formats
 		public DbSet<Format> Formats { get; set; }
-		public DbSet<SongFormatBridge> SongFormatBridge { get; set; }
-		public DbSet<AlbumFormatBridge> AlbumFormatBridge { get; set; }
+		//public DbSet<SongFormatComposite> SongFormatComposite { get; set; }
+		//public DbSet<AlbumFormatComposite> AlbumFormatComposite { get; set; }
 
 		//Add entries to database upon 'database-update'
 		//Override method of 'DbContext' class '.OnModelCreating()' to add database entries upon database creation
@@ -51,23 +51,29 @@ namespace DotNetPracticeExamples.Data
 			//Statuses
 			modelBuilder.Entity<Copyright>().HasData(CopyrightData.Data);
 
+
 			//Distributors
 			modelBuilder.Entity<Distributor>().HasData(DistributorData.Data);
 
-			//Song Distributor Bridge
-			modelBuilder.Entity<SongDistributorBridge>().HasData(SongDistributorBridgeData.Data);
+			//Song Distributor Composite
+			modelBuilder.Entity<SongDistributorComposite>().HasData(new SongDistributorComposite
+			{
+				SongId = 1,
+				DistributorId = 2
+			});
 
-			//Album Distributor Bridge
-			modelBuilder.Entity<SongDistributorBridge>().HasData(AlbumDistributorBridgeData.Data);
+			//Album Distributor Composite
+			//modelBuilder.Entity<AlbumDistributorComposite>().HasNoKey().HasData(AlbumDistributorCompositeData.Data);
+
 
 			//Formats
 			modelBuilder.Entity<Format>().HasData(FormatData.Fdata);
 
-			//Song Format Bridge
-			modelBuilder.Entity<SongFormatBridge>().HasData(SongFormatBridgeData.Data);
+			//Song Format Composite
+			//modelBuilder.Entity<SongFormatComposite>().HasNoKey().HasData(SongFormatCompositeData.Data);
 
-			//Album Format Bridge
-			modelBuilder.Entity<AlbumFormatBridge>().HasData(AlbumFormatBridgeData.Data);
+			//Album Format Composite
+			//modelBuilder.Entity<AlbumFormatComposite>().HasNoKey().HasData(AlbumFormatCompositeData.Data);
 		}
 	}
 }

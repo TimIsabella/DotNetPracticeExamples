@@ -16,7 +16,6 @@ namespace DotNetPracticeExamples.Data
 				CoverArtUrl = "https://www.website.com/coverart.jpg",
 				StatusId = 1,
 				ForSale = true,
-				//Formats = new int[] { 1, 2 },
 			},
 
 			new Album
@@ -28,7 +27,6 @@ namespace DotNetPracticeExamples.Data
 				CoverArtUrl = "https://www.popwebsite.com/coverart.jpg",
 				StatusId = 2,
 				ForSale = false,
-				//Formats = new int[] { 2, 3, 4 }
 			},
 
 			new Album
@@ -40,7 +38,6 @@ namespace DotNetPracticeExamples.Data
 				CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
 				StatusId = 3,
 				ForSale = true,
-				//Formats = new int[] { 1, 2, 3, 4 },
 			}
 		};
 	}

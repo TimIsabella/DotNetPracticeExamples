@@ -31,8 +31,7 @@ namespace DotNetPracticeExamples
 			{
 				//Define document to be created by Swagger generator
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotNetPracticeExamples", Version = "v1" });
-			}
-			);
+			});
 
 			//'.AddDbContext' (.NET extension of 'EntityFrameworkServiceCollectionExtensions' class) -- Registers the context class as a service
 			//- 'ApiDbContext' is registered as a service
@@ -68,8 +67,7 @@ namespace DotNetPracticeExamples
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
-			}
-			);
+			});
 		}
 	}
 }
