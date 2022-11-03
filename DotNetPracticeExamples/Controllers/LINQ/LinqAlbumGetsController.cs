@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DotNetPracticeExamples.Models;
 using DotNetPracticeExamples.Data;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
@@ -30,6 +28,18 @@ namespace DotNetPracticeExamples.Controllers
 		/// Take, TakeWhile, Reverse, ToArray, ToList, ToDictionary, ToLookup, AsEnumerable, Cast, OfType, First, FirstOrDefault, Last, LastOrDefault, Single, SingleOrDefault, 
 		/// ElementAt, Min, Max, Average, Sum, Aggregate
 
+		/// /////////// Get All Albums And List Songs ///////////
+		[HttpGet("GetAllAlbums")]
+		public IActionResult GetAllAlbums()
+		{
+			///Query Syntax
+			var result = _dbContext.Albums;
+
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
 
 		/// /////////// Get All Albums And List Songs ///////////
 		[HttpGet("GetAllSongsOfAlbum")]
