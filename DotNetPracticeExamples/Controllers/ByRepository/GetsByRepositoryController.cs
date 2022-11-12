@@ -1,6 +1,7 @@
-﻿using DotNetPracticeExamples.Repository;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using DotNetPracticeExamples.Models;
+using DotNetPracticeExamples.Repository.IRepository;
+using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Controllers.ByRepository
 {
@@ -8,12 +9,15 @@ namespace DotNetPracticeExamples.Controllers.ByRepository
 	[ApiController]
 	public class GetsByRepositoryController : ControllerBase
 	{
-		private GenreRepository _genreRepository;
+		private readonly IGenreRepository _genreRepository;
+
+		public GetsByRepositoryController(IGenreRepository genreRepository)
+		{ _genreRepository = genreRepository; }
 
 		[HttpGet]
 		public IActionResult GetAllGenres()
 		{ 
-			IQueryable result = _genreRepository.GetAllGenres();
+			List<Genre> result = _genreRepository.GetAllGenres();
 
 			if(result != null)
 			{ return StatusCode(200, result); }

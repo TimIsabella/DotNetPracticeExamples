@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DotNetPracticeExamples.Models;
 using DotNetPracticeExamples.Models.Composites;
-using System;
 
 namespace DotNetPracticeExamples.Data
 {
