@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DotNetPracticeExamples.Models;
-using DotNetPracticeExamples.Repository.IRepository;
 using System.Collections.Generic;
+using DotNetPracticeExamples.Services.IService;
 
 namespace DotNetPracticeExamples.Controllers.ByRepository
 {
@@ -9,15 +9,31 @@ namespace DotNetPracticeExamples.Controllers.ByRepository
 	[ApiController]
 	public class GetsByRepositoryController : ControllerBase
 	{
-		private readonly IGenreRepository _genreRepository;
+		private readonly IGenreService _genreService;
+		private readonly IDistributorService _distributorService;
 
-		public GetsByRepositoryController(IGenreRepository genreRepository)
-		{ _genreRepository = genreRepository; }
+		public GetsByRepositoryController(IGenreService genreService, 
+										  IDistributorService distributorService)
+		{ 
+			_genreService = genreService;
+			_distributorService = distributorService;
+		}
 
-		[HttpGet]
+		[HttpGet("GetAllGenres")]
 		public IActionResult GetAllGenres()
 		{ 
-			List<Genre> result = _genreRepository.GetAllGenres();
+			List<Genre> result = _genreService.GetAllGenres();
+
+			if(result != null)
+			{ return StatusCode(200, result); }
+			else
+			{ return StatusCode(404, "No results found"); }
+		}
+
+		[HttpGet("GetAllDistributors")]
+		public IActionResult GetAllDistributors()
+		{ 
+			List<Distributor> result = _distributorService.GetAllDistributors();
 
 			if(result != null)
 			{ return StatusCode(200, result); }

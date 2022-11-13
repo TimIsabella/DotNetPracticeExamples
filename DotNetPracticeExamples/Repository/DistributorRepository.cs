@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Repository
 {
-	public class GenreRepository : IGenreRepository
+	public class DistributorRepository : IDistributorRepository
 	{
 		private readonly ApiDbContext _dbContext;
 
-		public GenreRepository(ApiDbContext dbContext)
+		public DistributorRepository(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		public List<Genre> GetAllGenres()
-		{ return _dbContext.Genres.ToList(); }
+		public List<Distributor> GetAllDistributors()
+		{ return _dbContext.Distributors.ToList(); }
 	}
 }

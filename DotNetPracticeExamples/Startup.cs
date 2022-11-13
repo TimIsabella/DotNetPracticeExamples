@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 using DotNetPracticeExamples.Data;
 using DotNetPracticeExamples.Repository.IRepository;
 using DotNetPracticeExamples.Repository;
+using DotNetPracticeExamples.Services;
+using DotNetPracticeExamples.Services.IService;
 
 namespace DotNetPracticeExamples
 {
@@ -42,6 +44,9 @@ namespace DotNetPracticeExamples
 			
 			//Dependancy injection
 			services.AddScoped<IGenreRepository, GenreRepository>();
+			services.AddScoped<IGenreService, GenreService>();
+			services.AddScoped<IDistributorRepository, DistributorRepository>();
+			services.AddScoped<IDistributorService, DistributorService>();
 
 		}
 
