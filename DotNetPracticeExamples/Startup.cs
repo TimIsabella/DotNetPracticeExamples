@@ -41,8 +41,10 @@ namespace DotNetPracticeExamples
 			//- 'ApiDbContext' is registered as a service
 			//- '.UseSqlServer' (.NET extension of 'SqlServerDbContextOptionsExtensions' class) -- Configures the context to connect to a Microsoft SQL Server database
 			services.AddDbContext<ApiDbContext>(option => option.UseSqlServer(@"Data Source=GUNNANMON\SQLEXPRESS; Initial Catalog=DotNetPracticeExamples; Integrated Security=True; Connect Timeout=30; Encrypt=False; TrustServerCertificate=False; ApplicationIntent=ReadWrite; MultiSubnetFailover=False;"));
-			
+
 			//Dependancy injection
+			services.AddScoped<IAlbumRepository, AlbumRepository>();
+			services.AddScoped<IAlbumService, AlbumService>();
 			services.AddScoped<IGenreRepository, GenreRepository>();
 			services.AddScoped<IGenreService, GenreService>();
 			services.AddScoped<IDistributorRepository, DistributorRepository>();
