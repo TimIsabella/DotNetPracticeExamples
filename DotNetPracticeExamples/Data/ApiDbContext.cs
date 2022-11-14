@@ -21,7 +21,7 @@ namespace DotNetPracticeExamples.Data
 		public DbSet<SongWithImage> SongsWithImage { get; set; }
 		public DbSet<Album> Albums { get; set; }
 		public DbSet<Genre> Genres { get; set; }
-		public DbSet<Copyright> Status { get; set; }
+		public DbSet<Copyright> Copyrights { get; set; }
 
 		//Distributor
 		public DbSet<Distributor> Distributors { get; set; }

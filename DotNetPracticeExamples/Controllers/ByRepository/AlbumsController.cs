@@ -4,19 +4,19 @@ using System.Linq;
 using System;
 using DotNetPracticeExamples.Services.IService;
 
-namespace DotNetPracticeExamples.Controllers
+namespace DotNetPracticeExamples.Controllers.ByRepository
 {
 	//URL 'Route' -- https://localhost:1234/api/SongsGets
 	//- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
 	//[Route("api/[controller]")]
-	[Route("api/RepositoryAlbumsGets")]
+	[Route("api/AlbumsControllerByRepository")]
 	[ApiController]
-	public class AlbumByRepositoryController : ControllerBase
+	public class AlbumsController : ControllerBase
 	{
 		private ApiDbContext _dbContext;
 		private IAlbumService _albumService;
 
-		public AlbumByRepositoryController(ApiDbContext dbContext, IAlbumService albumService)
+		public AlbumsController(ApiDbContext dbContext, IAlbumService albumService)
 		{ 
 			_dbContext = dbContext;
 			_albumService = albumService;

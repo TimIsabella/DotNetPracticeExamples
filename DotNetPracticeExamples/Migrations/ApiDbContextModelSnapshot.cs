@@ -26,6 +26,9 @@ namespace DotNetPracticeExamples.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CopyrightId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CoverArtUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -37,9 +40,6 @@ namespace DotNetPracticeExamples.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -54,31 +54,31 @@ namespace DotNetPracticeExamples.Migrations
                         new
                         {
                             Id = 1,
+                            CopyrightId = 1,
                             CoverArtUrl = "https://www.website.com/coverart.jpg",
                             ForSale = true,
                             Genre = "Psytrance",
                             GenreId = 1,
-                            StatusId = 1,
                             Title = "Psytrance Album"
                         },
                         new
                         {
                             Id = 2,
+                            CopyrightId = 2,
                             CoverArtUrl = "https://www.popwebsite.com/coverart.jpg",
                             ForSale = false,
                             Genre = "Pop",
                             GenreId = 4,
-                            StatusId = 2,
                             Title = "Popular Album"
                         },
                         new
                         {
                             Id = 3,
+                            CopyrightId = 3,
                             CoverArtUrl = "https://www.mixalbum.com/coverart.jpg",
                             ForSale = true,
                             Genre = "Various",
                             GenreId = 10,
-                            StatusId = 3,
                             Title = "Mix Album"
                         });
                 });
@@ -533,7 +533,7 @@ namespace DotNetPracticeExamples.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status");
+                    b.ToTable("Copyrights");
 
                     b.HasData(
                         new

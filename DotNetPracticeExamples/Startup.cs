@@ -44,12 +44,18 @@ namespace DotNetPracticeExamples
 
 			//Dependancy injection
 			services.AddScoped<IAlbumRepository, AlbumRepository>();
-			services.AddScoped<IAlbumService, AlbumService>();
-			services.AddScoped<IGenreRepository, GenreRepository>();
-			services.AddScoped<IGenreService, GenreService>();
+			services.AddScoped<ICopyrightRepository, CopyrightRepository>();
 			services.AddScoped<IDistributorRepository, DistributorRepository>();
-			services.AddScoped<IDistributorService, DistributorService>();
+			services.AddScoped<IFormatRepository, FormatRepository>();
+			services.AddScoped<IGenreRepository, GenreRepository>();
+			services.AddScoped<ISongRepository, SongRepository>();
 
+			services.AddScoped<IAlbumService, AlbumService>();
+			services.AddScoped<ICopyrightService, CopyrightService>();
+			services.AddScoped<IDistributorService, DistributorService>();
+			services.AddScoped<IFormatService, FormatService>();
+			services.AddScoped<IGenreService, GenreService>();
+			services.AddScoped<ISongService, SongService>();
 		}
 
 		/// /////////// This method gets called by the runtime. Use this method to configure the HTTP request pipeline ///////////

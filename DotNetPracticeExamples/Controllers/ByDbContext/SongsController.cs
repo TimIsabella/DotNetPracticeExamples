@@ -1,24 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DotNetPracticeExamples.Models;
 using DotNetPracticeExamples.Data;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
-using System;
 
-namespace DotNetPracticeExamples.Controllers
+namespace DotNetPracticeExamples.Controllers.ByDbContext
 {
 	//URL 'Route' -- https://localhost:1234/api/SongsGets
 	//- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
 	//[Route("api/[controller]")]
-	[Route("api/LinqSongsGets")]
+	[Route("api/SongsControllerByDbContext")]
 	[ApiController]
-	public class LinqSongsGetsController : ControllerBase
+	public class SongsController : ControllerBase
 	{
 		private ApiDbContext _dbContext;
 
-		public LinqSongsGetsController(ApiDbContext dbContext)
+		public SongsController(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
 		/// ///////////////////////////////// GET EXAMPLES WITH LINQ /////////////////////////////////

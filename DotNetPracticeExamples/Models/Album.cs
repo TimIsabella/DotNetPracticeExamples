@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DotNetPracticeExamples.Models
 {
@@ -21,7 +17,7 @@ namespace DotNetPracticeExamples.Models
 
 		public string? CoverArtUrl { get; set; }
 
-		public int? StatusId { get; set; }
+		public int? CopyrightId { get; set; }
 
 		public bool? ForSale { get; set; }
 	}
