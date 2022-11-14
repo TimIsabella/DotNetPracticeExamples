@@ -1,7 +1,8 @@
 ﻿using DotNetPracticeExamples.Data;
 using System.Linq;
 using DotNetPracticeExamples.Repository.IRepository;
-using System.Collections;
+using DotNetPracticeExamples.Models;
+using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Repository
 {
@@ -12,7 +13,7 @@ namespace DotNetPracticeExamples.Repository
 		public CopyrightRepository(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		public IEnumerable GetAllCopyrights()
+		public List<Copyright> GetAllCopyrights()
 		{ return _dbContext.Copyrights.ToList(); }
 	}
 }

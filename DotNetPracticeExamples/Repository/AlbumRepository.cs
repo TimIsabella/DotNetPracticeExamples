@@ -3,7 +3,6 @@ using DotNetPracticeExamples.Data;
 using System.Linq;
 using DotNetPracticeExamples.Repository.IRepository;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections;
 
@@ -26,7 +25,7 @@ namespace DotNetPracticeExamples.Repository
 		/// ElementAt, Min, Max, Average, Sum, Aggregate
 
 		/// /////////// Get All Albums And List Songs ///////////
-		public IEnumerable GetAllAlbums()
+		public List<Album> GetAllAlbums()
 		{
 			///Query Syntax
 			return _dbContext.Albums.ToList();

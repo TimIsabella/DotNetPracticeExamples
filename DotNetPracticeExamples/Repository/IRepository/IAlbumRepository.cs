@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using DotNetPracticeExamples.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Repository.IRepository
 { 
 	public interface IAlbumRepository
 	{
-		IEnumerable GetAllAlbums();
+		List<Album> GetAllAlbums();
 		IEnumerable GetAllAlbumsWithAverageRating();
 		IEnumerable GetAllAlbumsWithFormats();
 		IEnumerable GetAllAlbumsWithFormatsAndDistributors();

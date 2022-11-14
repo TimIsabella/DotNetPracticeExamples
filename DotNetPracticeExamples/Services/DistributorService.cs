@@ -1,7 +1,6 @@
-﻿using DotNetPracticeExamples.Models;
-using System.Collections.Generic;
-using DotNetPracticeExamples.Repository.IRepository;
+﻿using DotNetPracticeExamples.Repository.IRepository;
 using DotNetPracticeExamples.Services.IService;
+using System.Collections;
 
 namespace DotNetPracticeExamples.Services
 {
@@ -12,7 +11,7 @@ namespace DotNetPracticeExamples.Services
 		public DistributorService(IDistributorRepository distributorRepository)
 		{ _distributorRepository = distributorRepository; }
 
-		public List<Distributor> GetAllDistributors()
+		public IEnumerable GetAllDistributors()
 		{ return _distributorRepository.GetAllDistributors(); }
 	}
 }

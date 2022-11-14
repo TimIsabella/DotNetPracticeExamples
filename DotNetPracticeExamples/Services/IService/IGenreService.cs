@@ -1,10 +1,9 @@
-﻿using DotNetPracticeExamples.Models;
-using System.Collections.Generic;
+﻿using System.Collections;
 
 namespace DotNetPracticeExamples.Services.IService
 {
     public interface IGenreService
     {
-        List<Genre> GetAllGenres();
+        IEnumerable GetAllGenres();
     }
 }

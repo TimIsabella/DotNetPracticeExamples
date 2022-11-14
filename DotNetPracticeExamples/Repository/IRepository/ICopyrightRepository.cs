@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using DotNetPracticeExamples.Models;
+using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Repository.IRepository
 {
-    public interface ICopyrightRepository
-    {
-        IEnumerable GetAllCopyrights();
-    }
+	public interface ICopyrightRepository
+	{
+		List<Copyright> GetAllCopyrights();
+	}
 }

@@ -1,7 +1,8 @@
 ﻿using DotNetPracticeExamples.Data;
 using System.Linq;
 using DotNetPracticeExamples.Repository.IRepository;
-using System.Collections;
+using System.Collections.Generic;
+using DotNetPracticeExamples.Models;
 
 namespace DotNetPracticeExamples.Repository
 {
@@ -12,7 +13,7 @@ namespace DotNetPracticeExamples.Repository
 		public FormatRepository(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		public IEnumerable GetAllFormats()
+		public List<Format> GetAllFormats()
 		{ return _dbContext.Formats.ToList(); }
 	}
 }

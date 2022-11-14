@@ -1,7 +1,8 @@
 ﻿using DotNetPracticeExamples.Data;
 using System.Linq;
 using DotNetPracticeExamples.Repository.IRepository;
-using System.Collections;
+using DotNetPracticeExamples.Models.Composites;
+using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Repository
 {
@@ -12,7 +13,7 @@ namespace DotNetPracticeExamples.Repository
 		public AlbumFormatCompositeRepository(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		public IEnumerable GetAllAlbumFormatComposites()
+		public List<AlbumFormatComposite> GetAllAlbumFormatComposites()
 		{ return _dbContext.AlbumFormatComposite.ToList(); }
 	}
 }

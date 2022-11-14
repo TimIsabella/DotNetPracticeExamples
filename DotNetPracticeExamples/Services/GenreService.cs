@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DotNetPracticeExamples.Repository.IRepository;
 using DotNetPracticeExamples.Services.IService;
+using System.Collections;
 
 namespace DotNetPracticeExamples.Services
 {
@@ -12,7 +13,7 @@ namespace DotNetPracticeExamples.Services
 		public GenreService(IGenreRepository genreRepository)
 		{ _genreRepository = genreRepository; }
 
-		public List<Genre> GetAllGenres()
+		public IEnumerable GetAllGenres()
 		{ return _genreRepository.GetAllGenres(); }
 	}
 }

@@ -1,7 +1,8 @@
 ﻿using DotNetPracticeExamples.Data;
 using System.Linq;
 using DotNetPracticeExamples.Repository.IRepository;
-using System.Collections;
+using System.Collections.Generic;
+using DotNetPracticeExamples.Models;
 
 namespace DotNetPracticeExamples.Repository
 {
@@ -12,7 +13,7 @@ namespace DotNetPracticeExamples.Repository
 		public SongRepository(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		public IEnumerable GetAllSongs()
+		public List<Song> GetAllSongs()
 		{ return _dbContext.Songs.ToList(); }
 	}
 }

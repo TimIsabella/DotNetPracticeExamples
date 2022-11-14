@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using DotNetPracticeExamples.Models;
+using System.Collections.Generic;
 
 namespace DotNetPracticeExamples.Repository.IRepository
 {
-    public interface IFormatRepository
-    {
-        IEnumerable GetAllFormats();
-    }
+	public interface IFormatRepository
+	{
+		List<Format> GetAllFormats();
+	}
 }
