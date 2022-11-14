@@ -44,6 +44,8 @@ namespace DotNetPracticeExamples
 
 			//Dependancy injection
 			services.AddScoped<IAlbumRepository, AlbumRepository>();
+			services.AddScoped<IAlbumDistributorCompositeRepository, AlbumDistributorCompositeRepository>();
+			services.AddScoped<IAlbumFormatCompositeRepository, AlbumFormatCompositeRepository>();
 			services.AddScoped<ICopyrightRepository, CopyrightRepository>();
 			services.AddScoped<IDistributorRepository, DistributorRepository>();
 			services.AddScoped<IFormatRepository, FormatRepository>();
