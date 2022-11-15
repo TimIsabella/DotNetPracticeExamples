@@ -70,7 +70,7 @@ namespace DotNetPracticeExamples.Services
 											   Artist = song.Artist,
 											   Title = song.Title,
 											   Duration = song.Duration.ToString(@"mm\:ss")
-										   }).ToList() //Returns multiple results and must be converted to a list
+										   }).ToList()
 							  };
 
 			///Method Syntax
@@ -90,7 +90,7 @@ namespace DotNetPracticeExamples.Services
 											   Artist = song.Artist,
 											   Title = song.Title,
 											   Duration = song.Duration.ToString(@"mm\:ss")
-										   }).ToList() //Returns multiple results and must be converted to a list
+										   }).ToList()
 							   };
 
 			return methodResult;
@@ -107,6 +107,7 @@ namespace DotNetPracticeExamples.Services
 							  select new
 							  {
 								  Album = album.Title,
+
 								  ///Create new TimeSpan based on sum total of song list duration
 								  Duration = new TimeSpan(songList.Sum(song => song.Duration.Hours),    //Get Sum total of songs hours
 														  songList.Sum(song => song.Duration.Minutes),  //Get Sum total of songs minutes
@@ -174,7 +175,6 @@ namespace DotNetPracticeExamples.Services
 		{
 			var queryResult = from album in _albumRepository.GetAllAlbums().Cast<Album>()
 
-								  //Format
 							  let formatComp = (from formatC in _albumFormatCompositeRepository.GetAllAlbumFormatComposites().Cast<AlbumFormatComposite>()
 												where album.Id == formatC.AlbumId
 												select formatC).ToList()
@@ -184,7 +184,6 @@ namespace DotNetPracticeExamples.Services
 												where formatC.FormatId == formatL.Id
 												select formatL.Type).ToList()
 
-							  //Distributor
 							  let distributorComp = (from distroC in _albumDistributorCompositeRepository.GetAllAlbumDistributorComposites().Cast<AlbumDistributorComposite>()
 													 where album.Id == distroC.AlbumId
 													 select distroC).ToList()
