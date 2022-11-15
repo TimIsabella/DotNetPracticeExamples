@@ -58,10 +58,10 @@ namespace DotNetPracticeExamples.Controllers
         [HttpGet("GetAllAlbumsWithAverageRating")]
         public IActionResult GetAllAlbumsWithAverageRating()
         {
-            var queryResult = _albumService.GetAllAlbumsWithAverageRating();
+            var result = _albumService.GetAllAlbumsWithAverageRating();
 
-            if (queryResult != null)
-            { return StatusCode(200, queryResult); }
+            if (result != null)
+            { return StatusCode(200, result); }
             else
             { return StatusCode(404, "No results found"); }
         }
@@ -70,10 +70,10 @@ namespace DotNetPracticeExamples.Controllers
         [HttpGet("GetAllAlbumsWithFormats")]
         public IActionResult GetAllAlbumsWithFormats()
         {
-            var queryResult = _albumService.GetAllAlbumsWithFormats();
+            var result = _albumService.GetAllAlbumsWithFormats();
 
-            if (queryResult != null)
-            { return StatusCode(200, queryResult); }
+            if (result != null)
+            { return StatusCode(200, result); }
             else
             { return StatusCode(404, "No results found"); }
         }
@@ -82,10 +82,10 @@ namespace DotNetPracticeExamples.Controllers
         [HttpGet("GetAllAlbumsWithFormatsAndDistributors")]
         public IActionResult GetAllAlbumsWithFormatsAndDistributors()
         {
-            var queryResult = _albumService.GetAllAlbumsWithFormatsAndDistributors();
+            var result = _albumService.GetAllAlbumsWithFormatsAndDistributors();
 
-            if (queryResult != null)
-            { return StatusCode(200, queryResult); }
+            if (result != null)
+            { return StatusCode(200, result); }
             else
             { return StatusCode(404, "No results found"); }
         }
