@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DotNetPracticeExamples.Services.IService;
+using System.Collections;
+using System;
 
 namespace DotNetPracticeExamples.Controllers
 {
@@ -19,84 +21,154 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpGet("GetAllSongs")]
 		public IActionResult GetAllSongs()
 		{
-			var result = _songSevice.GetAllSongs();
+			IEnumerable result = null;
+			
+			try
+			{
+				result = _songSevice.GetAllSongs();
 
-			if (result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{ 
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		/// /////////// Get All Songs by Genre ///////////
 		[HttpGet("GetSongsByGenre/{genre}")]
 		public IActionResult GetSongsByGenre(string genre)
 		{
-			var result = _songSevice.GetSongsByGenre(genre);
+			IEnumerable result = null;
 
-			if(result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+			try
+			{
+				result = _songSevice.GetSongsByGenre(genre);
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		/// /////////// Get All Songs by Rating Greater Than ///////////
 		[HttpGet("GetSongsByRatingGreaterThan/{rating}")]
 		public IActionResult GetSongsByRatingGreaterThan(int rating)
 		{
-			var result = _songSevice.GetSongsByRatingGreaterThan(rating);
+			IEnumerable result = null;
 
-			if(result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+			try
+			{
+				result = _songSevice.GetSongsByRatingGreaterThan(rating);
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		/// /////////// Get All Songs By Duration ///////////
 		[HttpGet("GetSongsByDurationGreaterThan/{duration}")]
 		public IActionResult GetSongsByDurationGreaterThan(int duration)
 		{
-			var result = _songSevice.GetSongsByDurationGreaterThan(duration);
+			IEnumerable result = null;
 
-			if(result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+			try
+			{
+				result = _songSevice.GetSongsByDurationGreaterThan(duration);
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		/// /////////// Get All Songs Paginated ///////////
 		[HttpGet("GetSongsPagniated/{pageIndex}&{pageSize}")]
 		public IActionResult GetSongsPagniated(int pageIndex, int pageSize)
 		{
-			var result = _songSevice.GetSongsPagniated(pageIndex, pageSize);
+			IEnumerable result = null;
 
-			if(result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+			try
+			{
+				result = _songSevice.GetSongsPagniated(pageIndex, pageSize);
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		/// /////////// Get All Songs Joined With Album Name ///////////
 		[HttpGet("GetAllSongsJoinedWithAlbumName")]
 		public IActionResult GetAllSongsJoinedWithAlbumName()
 		{
-			var result = _songSevice.GetAllSongsJoinedWithAlbumName();
+			IEnumerable result = null;
 
-			if(result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+			try
+			{
+				result = _songSevice.GetAllSongsJoinedWithAlbumName();
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		/// /////////// Get All Songs By Genre ///////////
 		[HttpGet("GetAllSongsByGenre")]
 		public IActionResult GetAllSongsByGenre()
 		{
-			var result = _songSevice.GetAllSongsByGenre();
+			IEnumerable result = null;
 
-			if(result != null)
-			{ return StatusCode(200, result); }
-			else
-			{ return StatusCode(404, "No results found"); }
+			try
+			{
+				result = _songSevice.GetAllSongsByGenre();
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 	}
 }
