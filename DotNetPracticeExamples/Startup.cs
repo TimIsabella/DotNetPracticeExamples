@@ -13,9 +13,9 @@ using DotNetPracticeExamples.Services.IService;
 
 namespace DotNetPracticeExamples
 {
-	/// ///////////////////////////////// Startup: configures the entity framework /////////////////////////////////
+    /// ///////////////////////////////// Startup: configures the entity framework /////////////////////////////////
 
-	public class Startup
+    public class Startup
 	{
 		public IConfiguration Configuration { get; }
 

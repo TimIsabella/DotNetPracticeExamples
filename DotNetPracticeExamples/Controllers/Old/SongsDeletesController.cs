@@ -9,7 +9,7 @@ namespace DotNetPracticeExamples.Controllers.Old
     //URL 'Route' -- https://localhost:1234/api/SongsDeletes
     //- '[controller]' is a wildcard for the below -- for a GET, 'songs' would be used in place of it to return songs
     //[Route("api/[controller]")]
-    [Route("api/SongsDeletes")]
+    [Route("api/Old/SongsDeletes")]
     [ApiController]
     public class SongsDeletesController : ControllerBase
     {
