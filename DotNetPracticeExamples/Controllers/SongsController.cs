@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DotNetPracticeExamples.Data;
-using System.Collections.Generic;
-using System.Linq;
 using DotNetPracticeExamples.Services.IService;
-using DotNetPracticeExamples.Models;
 
 namespace DotNetPracticeExamples.Controllers
 {
