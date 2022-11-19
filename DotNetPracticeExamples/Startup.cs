@@ -13,9 +13,9 @@ using DotNetPracticeExamples.Services.IService;
 
 namespace DotNetPracticeExamples
 {
-    /// ///////////////////////////////// Startup: configures the entity framework /////////////////////////////////
+	/// ///////////////////////////////// Startup: configures the entity framework /////////////////////////////////
 
-    public class Startup
+	public class Startup
 	{
 		public IConfiguration Configuration { get; }
 
@@ -51,6 +51,8 @@ namespace DotNetPracticeExamples
 			services.AddScoped<IFormatRepository, FormatRepository>();
 			services.AddScoped<IGenreRepository, GenreRepository>();
 			services.AddScoped<ISongRepository, SongRepository>();
+			services.AddScoped<ISongDistributorCompositeRepository, SongDistributorCompositeRepository>();
+			services.AddScoped<ISongFormatCompositeRepository, SongFormatCompositeRepository>();
 
 			services.AddScoped<IAlbumService, AlbumService>();
 			services.AddScoped<ICopyrightService, CopyrightService>();

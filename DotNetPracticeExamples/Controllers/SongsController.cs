@@ -170,5 +170,26 @@ namespace DotNetPracticeExamples.Controllers
 				return StatusCode(500, ex.Message.ToString());
 			}
 		}
+
+		[HttpGet("GetAllSongsWithDistributor")]
+		public IActionResult GetAllSongsWithDistributor()
+		{
+			IEnumerable result = null;
+
+			try
+			{
+				result = _songSevice.GetAllSongsWithDistributor();
+
+				if(result != null)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "No results found"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
+		}
 	}
 }

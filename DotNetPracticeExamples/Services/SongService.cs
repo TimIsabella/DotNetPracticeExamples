@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DotNetPracticeExamples.Models;
+using DotNetPracticeExamples.Models.Composites;
 using DotNetPracticeExamples.Repository.IRepository;
 using DotNetPracticeExamples.Services.IService;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +14,20 @@ namespace DotNetPracticeExamples.Services
 		private readonly ISongRepository _songRepository;
 		private readonly IGenreRepository _genreRepository;
 		private readonly IAlbumRepository _albumRepository;
+		private readonly IDistributorRepository _distributorRepository;
+		private readonly ISongDistributorCompositeRepository _songDistributorCompositeRepository;
 
 		public SongService(ISongRepository songRepository,
 						   IGenreRepository genreRepository,
-						   IAlbumRepository albumRepository)
+						   IAlbumRepository albumRepository,
+						   IDistributorRepository distributorRepository,
+						   ISongDistributorCompositeRepository songDistributorCompositeRepository)
 		{
 			_songRepository = songRepository;
 			_genreRepository = genreRepository;
 			_albumRepository = albumRepository;
+			_distributorRepository = distributorRepository;
+			_songDistributorCompositeRepository = songDistributorCompositeRepository;
 		}
 
 		/// ///////////////////////////////// GET EXAMPLES WITH LINQ /////////////////////////////////
@@ -106,6 +113,12 @@ namespace DotNetPracticeExamples.Services
 
 		public IEnumerable GetSongsPagniated(int pageIndex, int pageSize)
 		{
+			/////Query Syntax
+			//var queryResult = (from song in _songRepository.GetAllSongs().Cast<Song>()
+			//				   select song)
+			//				   .Skip((pageIndex - 1) * pageSize)    //Query syntax does not have skip
+			//				   .Take(pageSize);                     //Query syntax does not have take
+
 			///Query Syntax
 			var queryResult = (from song in _songRepository.GetAllSongs().Cast<Song>()
 							   select song)
@@ -185,6 +198,33 @@ namespace DotNetPracticeExamples.Services
 											   Title = song.Title,
 											   Duration = song.Duration.ToString(@"mm\:ss")
 										   }).ToList()
+							  };
+
+			return queryResult;
+		}
+
+		public IEnumerable GetAllSongsWithDistributor()
+		{
+			var queryResult = from song in _songRepository.GetAllSongs().Cast<Song>()
+							  select new
+							  {
+								  SongId = song.Id,
+								  SongName = song.Title,
+
+								  Distributors = (from distributor in _distributorRepository
+																	  .GetAllDistributors()
+																	  .Cast<Distributor>()
+												  join songC in _songDistributorCompositeRepository
+																.GetAllSongDistributorComposites()
+																.Cast<SongDistributorComposite>()
+												  on distributor.Id equals songC.DistributorId
+												  where songC.SongId == song.Id
+												  select new
+												  { 
+													Id = distributor.Id,
+													Name = distributor.Name,
+													Url = distributor.Url
+												  }).ToList()
 							  };
 
 			return queryResult;
