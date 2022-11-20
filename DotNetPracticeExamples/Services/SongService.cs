@@ -98,6 +98,7 @@ namespace DotNetPracticeExamples.Services
 
 		public IEnumerable GetSongsByDurationGreaterThan(int duration)
 		{
+			///Query syntax
 			var queryResult = from song in _songRepository.GetAllSongs().Cast<Song>()
 							  where song.Duration.Minutes >= duration
 							  orderby song.Duration.Minutes
@@ -185,6 +186,7 @@ namespace DotNetPracticeExamples.Services
 
 		public IEnumerable GetAllSongsByGenre()
 		{
+			///Query syntax
 			var queryResult = from genre in _genreRepository.GetAllGenres().Cast<Genre>()
 							  select new
 							  {
@@ -205,18 +207,15 @@ namespace DotNetPracticeExamples.Services
 
 		public IEnumerable GetAllSongsWithDistributor()
 		{
+			///Query syntax
 			var queryResult = from song in _songRepository.GetAllSongs().Cast<Song>()
 							  select new
 							  {
 								  SongId = song.Id,
 								  SongName = song.Title,
 
-								  Distributors = (from distributor in _distributorRepository
-																	  .GetAllDistributors()
-																	  .Cast<Distributor>()
-												  join songC in _songDistributorCompositeRepository
-																.GetAllSongDistributorComposites()
-																.Cast<SongDistributorComposite>()
+								  Distributors = (from distributor in _distributorRepository.GetAllDistributors().Cast<Distributor>()
+												  join songC in _songDistributorCompositeRepository.GetAllSongDistributorComposites().Cast<SongDistributorComposite>()
 												  on distributor.Id equals songC.DistributorId
 												  where songC.SongId == song.Id
 												  select new
@@ -227,7 +226,48 @@ namespace DotNetPracticeExamples.Services
 												  }).ToList()
 							  };
 
-			return queryResult;
+			///Method syntax
+			var methodResult = _songRepository.GetAllSongs().Cast<Song>().Select(song => new
+							   {
+							       SongId = song.Id,
+								   SongName = song.Title,
+
+								   Distributors = _distributorRepository   //Get all distributors
+												 .GetAllDistributors()
+												 .Cast<Distributor>()
+
+												 //Being join...
+												 .Join(_songDistributorCompositeRepository	//Get all distributor composites
+													   .GetAllSongDistributorComposites()
+													   .Cast<SongDistributorComposite>(),
+
+													  //Set records to 'Join on' as alias 'distributor' and 'songC'
+													   distributor => distributor.Id,      
+													   songC => songC.DistributorId,
+
+													   //Select alias records for 'join'
+													   (distributor, songC) => new
+													   {
+														   distributor,			//'join' records
+														   songC
+													   })
+														
+														 //'Where' result of joined records equals 'song.Id'
+														 .Where(result => result.songC.SongId == song.Id)
+														 
+														 //'Select' matching 'distributor'
+														 .Select(result => result.distributor)
+
+														 //Create selection of distributor
+														 .Select(result => new
+														 {
+															Id = result.Id,
+															Name = result.Name,
+															Url = result.Url
+														 }).ToList()
+								 }).ToList();
+
+			return methodResult;
 		}
 	}
 }
