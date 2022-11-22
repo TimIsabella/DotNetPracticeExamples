@@ -85,7 +85,7 @@ namespace DotNetPracticeExamples.Controllers
 										"Blue" 
 									  };
 
-			//Map each color for each object and output results
+			//Map each color for each object and output results 
 			//var pairs = arrayOfColors.SelectMany(_ => arrayOfObjects,
 			//											(col, obj) => $"{col} {obj}");		//Map on single line
 			
