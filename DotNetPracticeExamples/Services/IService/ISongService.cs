@@ -14,5 +14,7 @@ namespace DotNetPracticeExamples.Services.IService
 		IEnumerable GetSongsByRatingGreaterThan(int rating);
 		IEnumerable GetSongsPagniated(int pageIndex, int pageSize);
 		IEnumerable GetAllSongsWithDistributor();
+
+		int Post(Song song);
 	}
 }

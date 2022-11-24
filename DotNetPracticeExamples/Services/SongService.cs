@@ -269,5 +269,10 @@ namespace DotNetPracticeExamples.Services
 
 			return methodResult;
 		}
+
+		public int Post(Song song)
+		{
+			return _songRepository.Post(song);
+		}
 	}
 }

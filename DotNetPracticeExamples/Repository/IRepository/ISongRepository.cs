@@ -6,5 +6,6 @@ namespace DotNetPracticeExamples.Repository.IRepository
 	public interface ISongRepository
 	{
 		List<Song> GetAllSongs();
+		int Post(Song song);
 	}
 }

@@ -2,6 +2,8 @@
 using DotNetPracticeExamples.Services.IService;
 using System.Collections;
 using System;
+using DotNetPracticeExamples.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNetPracticeExamples.Controllers
 {
@@ -190,6 +192,12 @@ namespace DotNetPracticeExamples.Controllers
 			{
 				return StatusCode(500, ex.Message.ToString());
 			}
+		}
+
+		[HttpPost("PostSong")]
+		public int Post([FromForm] Song song)
+		{
+			return _songSevice.Post(song);
 		}
 	}
 }

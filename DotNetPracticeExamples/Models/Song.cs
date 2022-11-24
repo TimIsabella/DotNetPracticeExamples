@@ -23,7 +23,7 @@ namespace DotNetPracticeExamples.Models
 		public int GenreId { get; set; }
 
 		[Required(ErrorMessage = "Input Error: The 'Duration' field cannot be empty.")]
-		public TimeSpan Duration { get; set; }
+		public TimeSpan Duration { get; set; } //Example: 23:59:59.9999999
 
 		public int? AlbumId { get; set; }
 

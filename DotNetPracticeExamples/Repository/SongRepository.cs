@@ -15,5 +15,11 @@ namespace DotNetPracticeExamples.Repository
 
 		public List<Song> GetAllSongs()
 		{ return _dbContext.Songs.ToList(); }
+
+		public int Post(Song song)
+		{
+			_dbContext.Songs.Add(song);
+			return _dbContext.SaveChanges();
+		}
 	}
 }
