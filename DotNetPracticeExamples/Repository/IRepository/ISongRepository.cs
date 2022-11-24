@@ -7,5 +7,6 @@ namespace DotNetPracticeExamples.Repository.IRepository
 	{
 		List<Song> GetAllSongs();
 		int Post(Song song);
+		int DeleteById(int id);
 	}
 }

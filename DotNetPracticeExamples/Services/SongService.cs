@@ -274,5 +274,10 @@ namespace DotNetPracticeExamples.Services
 		{
 			return _songRepository.Post(song);
 		}
+
+		public int DeleteById(int id)
+		{
+			return _songRepository.DeleteById(id);
+		}
 	}
 }

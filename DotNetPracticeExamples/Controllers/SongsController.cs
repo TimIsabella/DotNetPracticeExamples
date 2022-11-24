@@ -199,5 +199,11 @@ namespace DotNetPracticeExamples.Controllers
 		{
 			return _songSevice.Post(song);
 		}
+
+		[HttpDelete("DeleteById")]
+		public int DeleteById(int id)
+		{
+			return _songSevice.DeleteById(id);
+		}
 	}
 }
