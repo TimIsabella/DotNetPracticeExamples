@@ -195,15 +195,45 @@ namespace DotNetPracticeExamples.Controllers
 		}
 
 		[HttpPost("PostSong")]
-		public int Post([FromForm] Song song)
+		public IActionResult Post([FromForm] Song song)
 		{
-			return _songSevice.Post(song);
+			int? result = null;
+
+			try
+			{
+				result = _songSevice.Post(song);
+
+				if(result != null)
+				{ return StatusCode(201, result); }
+				else
+				{ return StatusCode(400, "Bad request -- Record not created"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 
 		[HttpDelete("DeleteById")]
-		public int DeleteById(int id)
+		public IActionResult DeleteById(int id)
 		{
-			return _songSevice.DeleteById(id);
+			int? result = 0;
+
+			try
+			{
+				result = _songSevice.DeleteById(id);
+
+				if(result > 0)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(404, "Not found -- Record not created"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
 		}
 	}
 }
