@@ -227,7 +227,7 @@ namespace DotNetPracticeExamples.Controllers
 				if(result > 0)
 				{ return StatusCode(200, result); }
 				else
-				{ return StatusCode(404, "Not found -- Record not created"); }
+				{ return StatusCode(404, "Not found -- Record not deleted"); }
 			}
 
 			catch(Exception ex)
