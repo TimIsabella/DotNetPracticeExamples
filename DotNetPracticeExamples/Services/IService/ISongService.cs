@@ -16,6 +16,7 @@ namespace DotNetPracticeExamples.Services.IService
 		IEnumerable GetAllSongsWithDistributor();
 
 		int Post(Song song);
+		int Put(int id, Song song);
 		int DeleteById(int id);
 	}
 }

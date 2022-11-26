@@ -215,6 +215,28 @@ namespace DotNetPracticeExamples.Controllers
 			}
 		}
 
+		[HttpPut("UpdateSong")]
+		public IActionResult Put(int id, [FromForm] Song song)
+		{
+			int? result = null;
+
+			try
+			{
+				result = _songSevice.Put(id, song);
+
+				if(result > 0)
+				{ return StatusCode(200, result); }
+				else
+				{ return StatusCode(400, "Bad request -- Record not updated"); }
+			}
+
+			catch(Exception ex)
+			{
+				return StatusCode(500, ex.Message.ToString());
+			}
+		}
+
+
 		[HttpDelete("DeleteById")]
 		public IActionResult DeleteById(int id)
 		{

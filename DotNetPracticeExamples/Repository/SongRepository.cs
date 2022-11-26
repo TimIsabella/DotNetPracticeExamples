@@ -22,6 +22,27 @@ namespace DotNetPracticeExamples.Repository
 			return _dbContext.SaveChanges();
 		}
 
+		public int Put(int id, Song songFromClient)
+		{
+			var song = _dbContext.Songs.Find(id);
+
+			if(song != null)
+			{
+				song.Id = id;
+				song.Artist = songFromClient.Artist;
+				song.Title = songFromClient.Title;
+				song.Genre = songFromClient.Genre;
+				song.Duration = songFromClient.Duration;
+				song.Rating = songFromClient.Rating;
+				song.CopyrightId = songFromClient.CopyrightId;
+				song.ForSale = songFromClient.ForSale;
+
+				return _dbContext.SaveChanges();
+			}
+			else
+			{ return 0; }
+		}
+
 		public int DeleteById(int id)
 		{
 			var returnId = 0;
