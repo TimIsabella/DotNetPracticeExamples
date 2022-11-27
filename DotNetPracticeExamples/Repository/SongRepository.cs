@@ -19,7 +19,8 @@ namespace DotNetPracticeExamples.Repository
 		public int Post(Song song)
 		{
 			_dbContext.Songs.Add(song);
-			return _dbContext.SaveChanges();
+			_dbContext.SaveChanges();
+			return _dbContext.Entry(song).GetDatabaseValues().GetValue<int>("Id");
 		}
 
 		public int Put(int id, Song songFromClient)
