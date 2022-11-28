@@ -249,7 +249,7 @@ namespace DotNetPracticeExamples.Controllers
 				if(result > 0)
 				{ return StatusCode(200, result); }
 				else
-				{ return StatusCode(404, "Not found -- Record not deleted"); }
+				{ return StatusCode(404, "No record found for deletion"); }
 			}
 
 			catch(Exception ex)
