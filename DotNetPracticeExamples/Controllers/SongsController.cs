@@ -240,7 +240,7 @@ namespace DotNetPracticeExamples.Controllers
 		[HttpDelete("DeleteById")]
 		public IActionResult DeleteById(int id)
 		{
-			int? result = 0;
+			int result = 0;
 
 			try
 			{
