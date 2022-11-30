@@ -23,8 +23,8 @@ namespace DotNetPracticeExamples
 		//- 'IHostBuilder' is a .NET program initialization extension
 		public static IHostBuilder CreateHostBuilder(string[] args)
 		{
-			return Host.CreateDefaultBuilder(args)                  //'.CreateDefaultBuilder' (.NET extension of the 'Host' class) -- returns pre-configured defaults as an 'IHostBuilder'
-				   .ConfigureWebHostDefaults(webBuilder =>          //'.ConfigureWebHostDefaults' (.NET extension of the 'GenericHostBuilderExtensions' class) -- configures the 'IHostBuilder'
+			return Host.CreateDefaultBuilder(args)               //'.CreateDefaultBuilder' (.NET extension of the 'Host' class) -- returns pre-configured defaults as an 'IHostBuilder'
+				   .ConfigureWebHostDefaults(webBuilder =>        //'.ConfigureWebHostDefaults' (.NET extension of the 'GenericHostBuilderExtensions' class) -- configures the 'IHostBuilder'
 						   { webBuilder.UseStartup<Startup>(); }    //'.UseStartup'  (.NET extension of 'WebHostBuilderExtensions' class) -- specifies the web host startup class containing application functionality
 				   );
 		}
