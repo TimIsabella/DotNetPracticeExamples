@@ -204,9 +204,9 @@ namespace DotNetPracticeExamples.Controllers
 				result = _songSevice.Post(song);
 
 				if(result != null)
-				{ return StatusCode(201, result); }
+				{ return StatusCode(201, $"Id# {result} successfully created"); }
 				else
-				{ return StatusCode(400, "Bad request -- Record not created"); }
+				{ return StatusCode(400, $"Bad request -- Record not created. Result {result}"); }
 			}
 
 			catch(Exception ex)
@@ -225,9 +225,9 @@ namespace DotNetPracticeExamples.Controllers
 				result = _songSevice.Put(id, song);
 
 				if(result > 0)
-				{ return StatusCode(200, result); }
+				{ return StatusCode(200, $"Id# {id} successfully updated. Result: '{result}'"); }
 				else
-				{ return StatusCode(400, "Bad request -- Record not updated"); }
+				{ return StatusCode(400, $"Bad request -- Id# {id} not updated with. Result: '{result}'"); }
 			}
 
 			catch(Exception ex)
@@ -247,9 +247,9 @@ namespace DotNetPracticeExamples.Controllers
 				result = _songSevice.DeleteById(id);
 
 				if(result > 0)
-				{ return StatusCode(200, result); }
+				{ return StatusCode(200, $"Id# {id} successfully deleted. Result: '{result}'"); }
 				else
-				{ return StatusCode(404, "No record found for deletion"); }
+				{ return StatusCode(404, $"Not Found -- Id# {id} not found for deletion. Result '{result}'"); }
 			}
 
 			catch(Exception ex)
