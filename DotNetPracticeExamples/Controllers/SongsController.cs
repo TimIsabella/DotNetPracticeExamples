@@ -227,7 +227,7 @@ namespace DotNetPracticeExamples.Controllers
 				if(result > 0)
 				{ return StatusCode(200, $"Id# {id} successfully updated. Result: '{result}'"); }
 				else
-				{ return StatusCode(400, $"Bad request -- Id# {id} not updated with. Result: '{result}'"); }
+				{ return StatusCode(400, $"Bad request -- Id# {id} not updated. Result: '{result}'"); }
 			}
 
 			catch(Exception ex)
@@ -249,7 +249,7 @@ namespace DotNetPracticeExamples.Controllers
 				if(result > 0)
 				{ return StatusCode(200, $"Id# {id} successfully deleted. Result: '{result}'"); }
 				else
-				{ return StatusCode(404, $"Not Found -- Id# {id} not found for deletion. Result '{result}'"); }
+				{ return StatusCode(404, $"Not Found -- Id# {id} not found. Result '{result}'"); }
 			}
 
 			catch(Exception ex)
