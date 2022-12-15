@@ -22,7 +22,7 @@ namespace DotNetPracticeExamples.Controllers.Old
 		public OriginalController(ApiDbContext dbContext)
 		{ _dbContext = dbContext; }
 
-		/// //////////////////////////////////////////// GET ////////////////////////////////////////////
+		/// //////////////////////////////////////////// GET //////////////////////////////////////////// 
 
 		//On HTTP GET, the below method will be called and return 'IActionResult' to the client on an 'async' thread
 		//- 'IActionResult' (.NET interface of 'Mvc' class) -- Defines a contract that represents the result of an action method
